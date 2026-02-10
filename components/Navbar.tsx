@@ -3,21 +3,16 @@ import Link from 'next/link';
 
 export const Navbar = () => {
   return (
-    // h-[10vh] asegura que el alto sea relativo a la pantalla
-    // bg-inventor-oscuro usa el color que definiste en el config
-    <nav className="w-full h-[10vh] bg-inventor-oscuro text-white flex items-center justify-between px-[5%] shadow-md">
-      <div className="text-[1.5rem] font-bold tracking-tighter">
-        INVENTOS<span className="text-inventor-acento">.LAB</span>
+    // 'sticky top-0' para que te siga al bajar, 'backdrop-blur' para efecto cristal
+    <nav className="sticky top-0 z-50 w-full h-[10vh] bg-white/80 backdrop-blur-md flex items-center justify-between px-[5%] border-b border-gray-100">
+      <div className="text-[1.2rem] font-black tracking-tighter text-black">
+        LA CASA DE LOS INVENTOS
       </div>
       
-      <ul className="flex gap-[2rem] text-[1rem] font-medium">
-        <li className="hover:text-inventor-acento transition-colors cursor-pointer">
-          <Link href="/">Inicio</Link>
-        </li>
-        <li className="hover:text-inventor-acento transition-colors cursor-pointer">
-          <Link href="/inventos">Proyectos</Link>
-        </li>
-        <li className="px-[1rem] py-[0.4rem] bg-inventor-principal rounded-inventor-sm hover:opacity-90 transition-opacity">
+      <ul className="flex items-center gap-[2.5rem] text-[0.9rem] font-bold text-black uppercase tracking-widest">
+        <li className="hover:text-gray-500 transition-colors cursor-pointer">Inicio</li>
+        <li className="hover:text-gray-500 transition-colors cursor-pointer">Proyectos</li>
+        <li className="bg-black text-white px-[1.2rem] py-[0.5rem] rounded-full hover:bg-gray-800 transition-all cursor-pointer">
           Contacto
         </li>
       </ul>
