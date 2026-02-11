@@ -8,7 +8,7 @@ export default function Home() {
       </h1>
       <br />
       <p className="mt-bloque text-[1.2rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed">
-        Un portfolio diseñado para mostrar lo que ocurre cuando no hay límites.
+        Un espacio diseñado para mostrar lo que ocurre cuando no hay límites.
       </p>
 
       <div className="mt-seccion flex gap-[1.5rem]">
