@@ -28,9 +28,10 @@ export default function ProyectosPage() {
           <span className="text-gray-400">Proyectos</span>
         </h1>
         <p className="mt-[1rem] text-[1.2rem] text-black font-medium max-w-[40rem]">
-          Aquí podrás ver los proyectos en los que estoy trabajando actualmente,
-          con detalles sobre su estado y las tecnologías que estoy utilizando.
-          Soluciones móviles diseñadas bajo la filosofía de &#34;no hay
+          Aquí podrás ver los proyectos en los que estamos trabajando actualmente,
+          con detalles sobre su estado y las tecnologías que estamos utilizando.
+          <br />
+          Soluciones web y móviles diseñadas bajo la filosofía de &#34;no hay
           límites&#34;, buscando siempre innovar y crear experiencias únicas
           para los usuarios.
         </p>

@@ -2,7 +2,6 @@
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    // Como tu estructura no tiene 'src', estas rutas son las correctas
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
