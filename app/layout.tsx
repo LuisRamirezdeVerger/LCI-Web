@@ -1,5 +1,6 @@
-import { Navbar } from '../components/Navbar'; // Importamos tu nuevo componente
-import './globals.css';
+import { Navbar } from "../components/Navbar"; // Importamos tu nuevo componente
+import { Footer } from "@/components/Footer";
+import "./globals.css";
 
 export default function RootLayout({
   children,
@@ -8,9 +9,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body>
-        <Navbar /> 
-        {children}
+      <body className="flex flex-col min-h-screen">
+        <Navbar />
+        <div className="flex-grow">{children}</div>
+        <Footer />
       </body>
     </html>
   );
