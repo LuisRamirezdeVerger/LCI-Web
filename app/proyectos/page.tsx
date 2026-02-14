@@ -5,6 +5,7 @@ const MIS_PROYECTOS = [
   {
     id: 1,
     titulo: "Miau!",
+    color: "hover:from-blue-800 hover:to-black",
     descripcion:
       "App móvil para interactuar con tu gato a distancia, con sonidos y reclamos.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
@@ -13,7 +14,8 @@ const MIS_PROYECTOS = [
   {
     id: 2,
     titulo: "Miau! Gold",
-    descripcion: "Versión premium de la app Miau! con funciones exclusivas.",
+    color: "hover:from-[#D4AF37] hover:to-[#B8860B]",
+    descripcion: "Versión premium de la app Miau! con contenido exclusivo.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
     estado: "Finalizando fase de testeo",
   },
@@ -42,7 +44,7 @@ export default function ProyectosPage() {
         {MIS_PROYECTOS.map((proyecto) => (
           <article
             key={proyecto.id}
-            className="group border-2 border-black p-[2rem] flex flex-col justify-between hover:bg-black hover:text-white transition-all duration-300"
+            className={`group border-2 border-black p-[2rem] flex flex-col justify-between bg-gradient-to-br ${proyecto.color} hover:text-white transition-all duration-500`}
           >
             <div>
               <div className="flex gap-[0.5rem] mb-[1.5rem]">
