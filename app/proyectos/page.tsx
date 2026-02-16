@@ -19,6 +19,14 @@ const MIS_PROYECTOS = [
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
     estado: "Finalizando fase de testeo",
   },
+  {
+    id: 3,
+    titulo: "Music Link",
+    color: "hover:from-[#C0C0C0] hover:to-black",
+    descripcion: "Red social para músicos.",
+    tecnologias: ["Android", "Jetpack Compose", "Kotlin", "Firebase"],
+    estado: "En desarrollo",
+  },
 ];
 
 export default function ProyectosPage() {
