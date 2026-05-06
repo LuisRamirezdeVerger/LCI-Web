@@ -1,54 +1,27 @@
-import React from "react";
-//import { Navbar } from '../components/Navbar';
-
-const MIS_PROYECTOS = [
-  {
-    id: 1,
-    titulo: "Miau!",
-    color: "hover:from-blue-800 hover:to-black",
-    descripcion:
-      "App móvil para interactuar con tu gato a distancia, con sonidos y reclamos.",
-    tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
-    estado: "Empezando fase de testeo",
-  },
-  {
-    id: 2,
-    titulo: "Miau! Gold",
-    color: "hover:from-[#D4AF37] hover:to-[#B8860B]",
-    descripcion: "Versión premium de la app Miau! con contenido exclusivo.",
-    tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
-    estado: "Finalizando fase de testeo",
-  },
-  {
-    id: 3,
-    titulo: "Music Link",
-    color: "hover:from-[#C0C0C0] hover:to-black",
-    descripcion: "Red social para músicos.",
-    tecnologias: ["Android", "Jetpack Compose", "Kotlin", "Firebase"],
-    estado: "En desarrollo",
-  },
-];
+import { MIS_PROYECTOS } from "@/lib/proyectos";
+import { PageHeader } from "@/components/PageHeader";
 
 export default function ProyectosPage() {
   return (
-    <main className="min-h-[90vh] bg-white p-[5%]">
-      <header className="mb-seccion border-b-4 border-black pb-bloque">
-        <h1 className="text-[3rem] md:text-[5rem] font-[900] text-black tracking-tighter uppercase leading-none">
-          Laboratorio de <br />
-          <span className="text-gray-400">Proyectos</span>
-        </h1>
-        <p className="mt-[1rem] text-[1.2rem] text-black font-medium max-w-[40rem]">
-          Aquí podrás ver los proyectos en los que estamos trabajando actualmente,
-          con detalles sobre su estado y las tecnologías que estamos utilizando.
-          <br />
-          Soluciones web y móviles diseñadas bajo la filosofía de &#34;no hay
-          límites&#34;, buscando siempre innovar y crear experiencias únicas
-          para los usuarios.
-        </p>
-        <br />
-      </header>
-      <br />
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-[3rem]">
+    <main className="min-h-[90vh] bg-white p-[2rem] md:p-[5%]">
+      <PageHeader
+        titulo="Laboratorio de"
+        acento="Proyectos"
+        descripcion={
+          <>
+            Aquí podrás ver los proyectos en los que estamos trabajando actualmente,
+            con detalles sobre su estado y las tecnologías que estamos utilizando.
+            Soluciones web y móviles diseñadas bajo la filosofía de &#34;no hay
+            límites&#34;, buscando siempre innovar y crear experiencias únicas
+            para los usuarios.
+          </>
+        }
+      />
+
+      <section
+        aria-label="Listado de proyectos"
+        className="grid grid-cols-1 md:grid-cols-2 gap-[3rem]"
+      >
         {MIS_PROYECTOS.map((proyecto) => (
           <article
             key={proyecto.id}
@@ -85,7 +58,7 @@ export default function ProyectosPage() {
             </div>
           </article>
         ))}
-      </div>
+      </section>
     </main>
   );
 }

@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import { Navbar } from "../components/Navbar"; // Importamos tu nuevo componente
 import { Footer } from "@/components/Footer";
 import "./globals.css";
+
+export const metadata: Metadata = {
+  title: "La Casa de los Inventos",
+  description:
+    "Portfolio de Luis Ramírez de Verger (Wito). Laboratorio de proyectos web y móviles diseñados bajo la filosofía de \"no hay límites\", con enfoque en innovación, privacidad y experiencias únicas.",
+};
 
 export default function RootLayout({
   children,

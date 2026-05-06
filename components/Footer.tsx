@@ -22,13 +22,13 @@ export const Footer = () => {
         <div className="flex flex-col items-center md:items-start gap-[1.2rem]">
           <h3 className="text-[0.7rem] uppercase font-black tracking-[0.2em] text-gray-500">Contacto</h3>
           
-          <a href="mailto:luis.ramirezdeverger@gmail.com" className="flex items-center gap-[0.8rem] hover:text-gray-400 transition-colors group">
-            <Mail size={18} className="group-hover:scale-110 transition-transform" />
-            <span className="text-[0.9rem]">luis.ramirezdeverger@gmail.com</span>
+          <a href="mailto:lacasadelosinventos@gmail.com" className="flex items-center gap-[0.8rem] hover:text-gray-400 transition-colors group">
+            <Mail size="1.125rem" className="group-hover:scale-110 transition-transform" />
+            <span className="text-[0.9rem]">lacasadelosinventos@gmail.com</span>
           </a>
           
           <a href="tel:+34680300273" className="flex items-center gap-[0.8rem] hover:text-gray-400 transition-colors group">
-            <Phone size={18} className="group-hover:scale-110 transition-transform" />
+            <Phone size="1.125rem" className="group-hover:scale-110 transition-transform" />
             <span className="text-[0.9rem]">+34 680 300 273</span>
           </a>
         </div>
@@ -37,11 +37,11 @@ export const Footer = () => {
         <div className="flex flex-col gap-[1.2rem] items-center md:items-start">
           <h3 className="text-[0.7rem] uppercase font-black tracking-[0.2em] text-gray-500">Redes</h3>
           <div className="flex gap-[1.5rem]">
-            <a href="https://linkedin.com/in/luis-rdv" target="_blank" className="flex items-center gap-[0.5rem] bg-white text-black px-[1rem] py-[0.5rem] rounded-full font-bold text-[0.8rem] hover:bg-gray-200 transition-all">
-              <Linkedin size={16} /> LinkedIn
+            <a href="https://linkedin.com/in/luis-rdv" target="_blank" rel="noopener noreferrer" className="flex items-center gap-[0.5rem] bg-white text-black px-[1rem] py-[0.5rem] rounded-full font-bold text-[0.8rem] hover:bg-gray-200 transition-all">
+              <Linkedin size="1rem" /> LinkedIn
             </a>
-            <a href="https://github.com/LuisRamirezdeVerger" target="_blank" className="flex items-center gap-[0.5rem] border border-white px-[1rem] py-[0.5rem] rounded-full font-bold text-[0.8rem] hover:bg-white hover:text-black transition-all">
-              <Github size={16} /> GitHub
+            <a href="https://github.com/LuisRamirezdeVerger" target="_blank" rel="noopener noreferrer" className="flex items-center gap-[0.5rem] border border-white px-[1rem] py-[0.5rem] rounded-full font-bold text-[0.8rem] hover:bg-white hover:text-black transition-all">
+              <Github size="1rem" /> GitHub
             </a>
           </div>
         </div>
