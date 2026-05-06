@@ -3,7 +3,7 @@ import { PageHeader } from "@/components/PageHeader";
 
 export default function ProyectosPage() {
   return (
-    <main className="min-h-[90vh] bg-white p-[2rem] md:p-[5%]">
+    <main className="min-h-[90vh] bg-white px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col gap-[4rem] md:gap-[6rem]">
       <PageHeader
         titulo="Laboratorio de"
         acento="Proyectos"
@@ -28,16 +28,16 @@ export default function ProyectosPage() {
             className={`group border-2 border-black p-[2rem] flex flex-col justify-between bg-gradient-to-br ${proyecto.color} hover:text-white transition-all duration-500`}
           >
             <div>
-              <div className="flex gap-[0.5rem] mb-[1.5rem]">
+              <ul className="flex flex-wrap gap-[0.5rem] mb-[1.5rem]">
                 {proyecto.tecnologias.map((tech) => (
-                  <span
+                  <li
                     key={tech}
-                    className="text-[0.7rem] font-bold border border-current px-[0.6rem] py-[0.2rem] uppercase tracking-widest"
+                    className="text-[0.7rem] font-bold border border-current px-[0.6rem] py-[0.2rem] uppercase tracking-widest whitespace-nowrap"
                   >
                     {tech}
-                  </span>
+                  </li>
                 ))}
-              </div>
+              </ul>
               <h2 className="text-[2.5rem] font-black uppercase mb-[1rem] leading-none">
                 {proyecto.titulo}
               </h2>
