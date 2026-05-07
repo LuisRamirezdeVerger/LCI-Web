@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import { Code2, Zap } from "lucide-react";
+import { Zap } from "lucide-react";
 import { METODOLOGIAS, TECNOLOGIAS } from "@/lib/sobre-nosotros";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionTitle } from "@/components/SectionTitle";
+import { TechItemInteractivo } from "@/components/TechItemInteractivo";
+import { MetodologiaInteractiva } from "@/components/MetodologiaInteractiva";
 
 export const metadata: Metadata = {
   title: "Sobre Nosotros | La Casa de los Inventos",
@@ -33,22 +35,17 @@ export default function SobreNosotrosPage() {
         <SectionTitle id="como-funcionamos">Cómo funcionamos</SectionTitle>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[2rem] md:gap-[2.5rem]">
-          {METODOLOGIAS.map(({ icono: Icono, titulo, descripcion }) => (
-            <article
-              key={titulo}
-              className="group border-2 border-black p-[2rem] flex flex-col gap-[1rem] hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300"
-            >
-              <div className="flex items-center gap-[0.8rem]">
-                <Icono size="1.5rem" className="shrink-0" />
-                <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight">
-                  {titulo}
-                </h3>
-              </div>
-              <p className="text-base md:text-lg leading-relaxed opacity-90">
-                {descripcion}
-              </p>
-            </article>
-          ))}
+          {METODOLOGIAS.map((metodologia) => {
+            const Icono = metodologia.icono;
+            return (
+              <MetodologiaInteractiva
+                key={metodologia.titulo}
+                icono={<Icono className="w-[1.5rem] h-[1.5rem] shrink-0" />}
+                titulo={metodologia.titulo}
+                descripcion={metodologia.descripcion}
+              />
+            );
+          })}
         </div>
       </section>
 
@@ -63,27 +60,8 @@ export default function SobreNosotrosPage() {
         </p>
 
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-[2rem]">
-          {TECNOLOGIAS.map(({ nombre, version, descripcion }) => (
-            <li
-              key={nombre}
-              className="border-2 border-black p-[1.5rem] flex flex-col gap-[0.5rem] hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300"
-            >
-              <div className="flex items-center gap-[0.5rem]">
-                <Code2 size="1.125rem" className="shrink-0" />
-                <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
-                  Stack
-                </span>
-              </div>
-              <div className="flex items-baseline gap-[0.5rem] mt-[0.5rem]">
-                <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter">
-                  {nombre}
-                </span>
-                <span className="text-sm font-bold opacity-70">{version}</span>
-              </div>
-              <p className="text-sm md:text-base leading-relaxed opacity-90">
-                {descripcion}
-              </p>
-            </li>
+          {TECNOLOGIAS.map((tecnologia) => (
+            <TechItemInteractivo key={tecnologia.nombre} {...tecnologia} />
           ))}
         </ul>
 
