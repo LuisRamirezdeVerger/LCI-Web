@@ -1,5 +1,7 @@
 import { MIS_PROYECTOS } from "@/lib/proyectos";
 import { PageHeader } from "@/components/PageHeader";
+import { AccionProyecto } from "@/components/AccionProyecto";
+import { ProyectoCardInteractiva } from "@/components/ProyectoCardInteractiva";
 
 export default function ProyectosPage() {
   return (
@@ -23,12 +25,9 @@ export default function ProyectosPage() {
         className="grid grid-cols-1 md:grid-cols-2 gap-[3rem]"
       >
         {MIS_PROYECTOS.map((proyecto) => (
-          <article
-            key={proyecto.id}
-            className={`group border-2 border-black p-[2rem] flex flex-col justify-between bg-gradient-to-br ${proyecto.color} hover:text-white transition-all duration-500`}
-          >
+          <ProyectoCardInteractiva key={proyecto.id} proyecto={proyecto}>
             <div>
-              <ul className="flex flex-wrap gap-[0.5rem] mb-[1.5rem]">
+              <ul className="list-none flex flex-wrap gap-[0.5rem] mb-[1.5rem]">
                 {proyecto.tecnologias.map((tech) => (
                   <li
                     key={tech}
@@ -41,11 +40,12 @@ export default function ProyectosPage() {
               <h2 className="text-[2.5rem] font-black uppercase mb-[1rem] leading-none">
                 {proyecto.titulo}
               </h2>
-              <p className="text-[1.1rem] opacity-80 leading-relaxed mb-[2rem]">
+              <p className="text-[1.1rem] opacity-80 leading-relaxed">
                 {proyecto.descripcion}
               </p>
+              <AccionProyecto proyecto={proyecto} />
             </div>
-            <div className="flex justify-between items-end pt-[1rem] border-t border-current/20">
+            <div className="flex justify-between items-end pt-[1rem] mt-[2rem] border-t border-current/20">
               <div className="flex flex-col">
                 <span className="text-[0.7rem] uppercase font-bold opacity-50">
                   Estado actual
@@ -56,7 +56,7 @@ export default function ProyectosPage() {
                 →
               </span>
             </div>
-          </article>
+          </ProyectoCardInteractiva>
         ))}
       </section>
     </main>

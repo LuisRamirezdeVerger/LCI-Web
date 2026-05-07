@@ -11,7 +11,7 @@ export default function Home() {
         </span>
       </h1>
 
-      <p className="text-[1.2rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed">
+      <p className="text-[1.2rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed ">
         Un espacio diseñado para mostrar lo que ocurre cuando no hay límites.
       </p>
 

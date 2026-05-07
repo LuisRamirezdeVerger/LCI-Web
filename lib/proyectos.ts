@@ -4,7 +4,8 @@ export interface Proyecto {
   color: string;
   descripcion: string;
   tecnologias: string[];
-  estado: string;
+  estado?: string;
+  urlDescarga?: string;
 }
 
 export const MIS_PROYECTOS: Proyecto[] = [
@@ -14,7 +15,8 @@ export const MIS_PROYECTOS: Proyecto[] = [
     color: "hover:from-[#C0C0C0] hover:to-black",
     descripcion: "Red social para músicos.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin", "Firebase"],
-    estado: "Fase abierta. Disponible en Play Store",
+    estado: "Fase abierta",
+    urlDescarga: "https://play.google.com/store/apps/details?id=com.wito.musiclink",
   },
   {
     id: 2,
@@ -22,7 +24,7 @@ export const MIS_PROYECTOS: Proyecto[] = [
     color: "hover:from-[#D4AF37] hover:to-[#B8860B]",
     descripcion: "Versión premium de la app Miau! con contenido exclusivo.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
-    estado: "Finalizando fase de testeo",
+    estado: "Beta cerrada",
   },
   {
     id: 3,
@@ -31,6 +33,6 @@ export const MIS_PROYECTOS: Proyecto[] = [
     descripcion:
       "App móvil para interactuar con tu gato a distancia, con sonidos y reclamos.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
-    estado: "Empezando fase de testeo",
+    estado: "Beta cerrada",
   },
 ];
