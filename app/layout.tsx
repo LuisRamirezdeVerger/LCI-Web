@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Navbar } from "../components/Navbar"; // Importamos tu nuevo componente
 import { Footer } from "@/components/Footer";
+import { Analytics } from "@vercel/analytics/next"
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -20,6 +21,7 @@ export default function RootLayout({
         <Navbar />
         <div className="flex-grow">{children}</div>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

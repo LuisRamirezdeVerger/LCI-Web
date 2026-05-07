@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MIS_PROYECTOS } from "@/lib/proyectos";
 import { PageHeader } from "@/components/PageHeader";
 import { AccionProyecto } from "@/components/AccionProyecto";
@@ -38,7 +39,16 @@ export default function ProyectosPage() {
                 ))}
               </ul>
               <h2 className="text-[2.5rem] font-black uppercase mb-[1rem] leading-none">
-                {proyecto.titulo}
+                {proyecto.urlCaso ? (
+                  <Link
+                    href={proyecto.urlCaso}
+                    className="before:absolute before:inset-0 before:content-[''] hover:underline"
+                  >
+                    {proyecto.titulo}
+                  </Link>
+                ) : (
+                  proyecto.titulo
+                )}
               </h2>
               <p className="text-[1.1rem] opacity-80 leading-relaxed">
                 {proyecto.descripcion}

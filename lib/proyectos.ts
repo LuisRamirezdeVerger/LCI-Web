@@ -12,6 +12,8 @@ export interface Proyecto {
   tecnologias: string[];
   estado?: string;
   urlDescarga?: string;
+  /** Ruta interna al caso de estudio del proyecto (ej. "/proyectos/music-link"). */
+  urlCaso?: string;
 }
 
 export const MIS_PROYECTOS: Proyecto[] = [
@@ -23,6 +25,7 @@ export const MIS_PROYECTOS: Proyecto[] = [
     tecnologias: ["Android", "Jetpack Compose", "Kotlin", "Firebase"],
     estado: "Fase abierta",
     urlDescarga: "https://play.google.com/store/apps/details?id=com.wito.musiclink",
+    urlCaso: "/proyectos/music-link",
   },
   {
     id: 2,
