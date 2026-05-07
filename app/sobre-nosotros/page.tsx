@@ -36,7 +36,7 @@ export default function SobreNosotrosPage() {
           {METODOLOGIAS.map(({ icono: Icono, titulo, descripcion }) => (
             <article
               key={titulo}
-              className="group border-2 border-black p-[2rem] flex flex-col gap-[1rem] hover:bg-black hover:text-white transition-colors duration-300"
+              className="group border-2 border-black p-[2rem] flex flex-col gap-[1rem] hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300"
             >
               <div className="flex items-center gap-[0.8rem]">
                 <Icono size="1.5rem" className="shrink-0" />
@@ -66,7 +66,7 @@ export default function SobreNosotrosPage() {
           {TECNOLOGIAS.map(({ nombre, version, descripcion }) => (
             <li
               key={nombre}
-              className="border-2 border-black p-[1.5rem] flex flex-col gap-[0.5rem] hover:bg-inventor-principal hover:text-white hover:border-inventor-principal transition-colors duration-300"
+              className="border-2 border-black p-[1.5rem] flex flex-col gap-[0.5rem] hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300"
             >
               <div className="flex items-center gap-[0.5rem]">
                 <Code2 size="1.125rem" className="shrink-0" />

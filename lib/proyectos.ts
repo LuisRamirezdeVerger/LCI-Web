@@ -1,7 +1,13 @@
 export interface Proyecto {
   id: number;
   titulo: string;
-  color: string;
+  /**
+   * String COMPLETO del degradado de marca (sin prefijo `hover:`).
+   * Incluye dirección + paradas. Se aplica idénticamente en hover (PC) y
+   * en estado "en foco" del IntersectionObserver (móvil) para garantizar
+   * una identidad visual única en ambos viewports.
+   */
+  colorBranding: string;
   descripcion: string;
   tecnologias: string[];
   estado?: string;
@@ -12,7 +18,7 @@ export const MIS_PROYECTOS: Proyecto[] = [
   {
     id: 1,
     titulo: "Music Link",
-    color: "hover:from-[#C0C0C0] hover:to-black",
+    colorBranding: "bg-gradient-to-br from-[#C0C0C0] to-black",
     descripcion: "Red social para músicos.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin", "Firebase"],
     estado: "Fase abierta",
@@ -21,7 +27,7 @@ export const MIS_PROYECTOS: Proyecto[] = [
   {
     id: 2,
     titulo: "Miau! Gold",
-    color: "hover:from-[#D4AF37] hover:to-[#B8860B]",
+    colorBranding: "bg-gradient-to-br from-[#D4AF37] to-[#B8860B]",
     descripcion: "Versión premium de la app Miau! con contenido exclusivo.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
     estado: "Beta cerrada",
@@ -29,7 +35,7 @@ export const MIS_PROYECTOS: Proyecto[] = [
   {
     id: 3,
     titulo: "Miau!",
-    color: "hover:from-blue-800 hover:to-black",
+    colorBranding: "bg-gradient-to-br from-blue-800 to-black",
     descripcion:
       "App móvil para interactuar con tu gato a distancia, con sonidos y reclamos.",
     tecnologias: ["Android", "Jetpack Compose", "Kotlin"],
