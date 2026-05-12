@@ -7,7 +7,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "La Casa de los Inventos",
   description:
-    "Portfolio de Luis Ramírez de Verger (Wito). Laboratorio de proyectos web y móviles diseñados bajo la filosofía de \"no hay límites\", con enfoque en innovación, privacidad y experiencias únicas.",
+    "Generando espacios web y app móvil con un enfoque personalizado. Apto para ocio y negocio.",
 };
 
 export default function RootLayout({

@@ -127,7 +127,7 @@ const CAPAS_SEGURIDAD = [
 
 export default function MusicLinkCaseStudyPage() {
   return (
-    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white text-black px-[5%] py-[6rem] flex flex-col gap-[6rem] md:gap-[8rem]">
+    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white text-black px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col gap-[4rem] md:gap-[6rem]">
       {/* HERO */}
       <header className="flex flex-col gap-[2rem] animate-fade-in-up">
         <Link

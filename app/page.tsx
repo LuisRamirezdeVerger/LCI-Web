@@ -4,21 +4,22 @@ import logoLCI from "@/components/logo_lci.svg";
 
 export default function Home() {
   return (
-    <main className="min-h-[90vh] flex flex-col items-center justify-center bg-white px-[5%] py-[3rem] md:py-[5%] text-center gap-bloque">
+    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col items-center justify-center text-center gap-[1.5rem] md:gap-[2.5rem]">
       <h1 className="sr-only">La Casa de los Inventos</h1>
       <Image
         src={logoLCI}
         alt=""
         aria-hidden="true"
         priority
-        className="w-[20rem] md:w-[28rem] h-auto max-w-full animate-invento-flotando"
+        className="w-[20rem] md:w-[28rem] mt-[-10rem] h-auto max-w-full animate-invento-flotando"
       />
 
       <p className="text-[1.25rem] md:text-[1.75rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed">
-        Un espacio diseñado para mostrar lo que ocurre cuando no hay límites.
+        Generando espacios web y app móvil con un enfoque personalizado. 
+Apto para ocio y negocio.
       </p>
 
-      <div className="mt-[3rem] flex flex-wrap justify-center gap-[1.5rem]">
+      <div className="mt-[0.2rem] flex flex-wrap justify-center gap-[1.5rem]">
         <Link
           href="/proyectos"
           className="inline-block px-[2rem] py-[1rem] bg-black text-white rounded-full font-bold hover:bg-gray-800 hover:scale-110 active:bg-gray-800 active:scale-[0.98] transition-all duration-300"
