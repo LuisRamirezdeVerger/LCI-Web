@@ -20,7 +20,7 @@ export const Footer = () => {
 
         {/* Contacto */}
         <div className="flex flex-col items-center sm:items-start gap-[1.2rem]">
-          <h3 className="text-[0.7rem] uppercase font-black tracking-[0.2em] text-gray-500">Contacto</h3>
+          <h3 className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-black tracking-wider md:tracking-[0.2em] leading-tight text-gray-500">Contacto</h3>
           
           <a href="mailto:lacasadelosinventos@gmail.com" className="flex items-center gap-[0.8rem] hover:text-gray-400 active:text-gray-400 transition-colors duration-300 group break-all">
             <Mail size="1.125rem" className="shrink-0 group-hover:scale-110 transition-transform" />
@@ -37,7 +37,7 @@ export const Footer = () => {
       </div>
 
       {/* Copyright */}
-      <div className="mt-[0.3rem] pt-[0.3rem] border-t border-white/10 flex justify-between text-[0.7rem] font-bold text-gray-600 uppercase tracking-widest">
+      <div className="mt-[0.3rem] pt-[0.3rem] border-t border-white/10 flex justify-between text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold text-gray-600 uppercase tracking-wider md:tracking-widest leading-tight">
         <span>© {currentYear} Luis Ramírez de Verger a.k.a Wito</span>
       </div>
     </footer>

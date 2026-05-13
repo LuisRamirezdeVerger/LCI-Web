@@ -6,7 +6,7 @@ import { ProyectoCardInteractiva } from "@/components/ProyectoCardInteractiva";
 
 export default function ProyectosPage() {
   return (
-    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col gap-[4rem] md:gap-[6rem]">
+    <main className="min-h-[90dvh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-[6rem] flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-[6rem]">
       <PageHeader
         titulo="Laboratorio de"
         acento="Proyectos"
@@ -32,7 +32,7 @@ export default function ProyectosPage() {
                 {proyecto.tecnologias.map((tech) => (
                   <li
                     key={tech}
-                    className="text-[0.7rem] font-bold border border-current px-[0.6rem] py-[0.2rem] uppercase tracking-widest whitespace-nowrap"
+                    className="text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold border border-current px-[0.6rem] py-[0.2rem] uppercase tracking-wider md:tracking-widest leading-tight whitespace-nowrap"
                   >
                     {tech}
                   </li>
@@ -57,7 +57,7 @@ export default function ProyectosPage() {
             </div>
             <div className="flex justify-between items-end pt-[1rem] mt-[2rem] border-t border-current/20">
               <div className="flex flex-col">
-                <span className="text-[0.7rem] uppercase font-bold opacity-50">
+                <span className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-bold opacity-50 tracking-wider md:tracking-widest leading-tight">
                   Estado actual
                 </span>
                 <span className="text-[1rem] font-bold">{proyecto.estado}</span>

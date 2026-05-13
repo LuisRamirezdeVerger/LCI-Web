@@ -14,13 +14,13 @@ export const metadata: Metadata = {
 
 export default function SobreNosotrosPage() {
   return (
-    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col gap-[4rem] md:gap-[6rem]">
+    <main className="min-h-[90dvh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-[6rem] flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-[6rem]">
       <PageHeader
         titulo="Sobre"
         acento="Nosotros"
         descripcion={
           <>
-            Somos un laboratorio de ideas convertidas en producto. Diseñamos y
+            Somos un laboratorio de ideas. Diseñamos y
             desarrollamos experiencias web y móviles bajo una sola regla:{" "}
             <span className="font-black">no hay límites</span>.
           </>
@@ -67,7 +67,7 @@ export default function SobreNosotrosPage() {
 
         <div className="mt-[3rem] md:mt-[4rem] border-t-2 border-black pt-[2.5rem] md:pt-[3rem] flex items-center gap-[1rem] text-black">
           <Zap size="1.25rem" className="shrink-0" />
-          <p className="text-sm md:text-base font-bold uppercase tracking-[0.15em]">
+          <p className="text-[clamp(0.75rem,2.5vw,1rem)] font-bold uppercase tracking-wider md:tracking-[0.15em] leading-tight">
             Construido con foco en privacidad, accesibilidad y rendimiento.
           </p>
         </div>

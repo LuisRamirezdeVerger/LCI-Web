@@ -43,7 +43,7 @@ export const FormularioTester = () => {
       <div className="flex flex-col">
         <label
           htmlFor="nombre"
-          className="text-xs uppercase font-bold tracking-[0.2em] text-black mb-[0.75rem]"
+          className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight text-black mb-[0.75rem]"
         >
           Nombre o apodo
         </label>
@@ -61,7 +61,7 @@ export const FormularioTester = () => {
       <div className="flex flex-col">
         <label
           htmlFor="email"
-          className="text-xs uppercase font-bold tracking-[0.2em] text-black mb-[0.75rem]"
+          className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight text-black mb-[0.75rem]"
         >
           Correo electrónico
         </label>
@@ -79,7 +79,7 @@ export const FormularioTester = () => {
       <div className="flex flex-col">
         <label
           htmlFor="interes"
-          className="text-xs uppercase font-bold tracking-[0.2em] text-black mb-[0.75rem]"
+          className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight text-black mb-[0.75rem]"
         >
           ¿Qué te interesa probar?{" "}
           <span className="opacity-50 normal-case font-medium tracking-normal">
@@ -98,7 +98,7 @@ export const FormularioTester = () => {
       <div className="border-2 border-dashed border-black p-[1.25rem] flex flex-col gap-[0.75rem]">
         <div className="flex flex-wrap items-center gap-[0.5rem]">
           <ShieldCheck size="1rem" className="shrink-0" />
-          <span className="text-xs uppercase font-bold tracking-[0.2em]">
+          <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight">
             Verificación humana
           </span>
         </div>

@@ -127,12 +127,12 @@ const CAPAS_SEGURIDAD = [
 
 export default function MusicLinkCaseStudyPage() {
   return (
-    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white text-black px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col gap-[4rem] md:gap-[6rem]">
+    <main className="min-h-[90dvh] w-full max-w-[100vw] overflow-x-hidden bg-white text-black px-[2rem] md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-[6rem] flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-[6rem]">
       {/* HERO */}
       <header className="flex flex-col gap-[2rem] animate-fade-in-up">
         <Link
           href="/proyectos"
-          className="inline-flex items-center gap-[0.5rem] self-start text-xs uppercase font-bold tracking-[0.2em] hover:opacity-60 active:scale-[0.98] transition-all duration-300"
+          className="inline-flex items-center gap-[0.5rem] self-start text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight hover:opacity-60 active:scale-[0.98] transition-all duration-300"
         >
           <ArrowLeft size="1rem" className="shrink-0" />
           Volver a proyectos
@@ -153,7 +153,7 @@ export default function MusicLinkCaseStudyPage() {
           {["Android", "Jetpack Compose", "Kotlin", "Firebase"].map((tag) => (
             <span
               key={tag}
-              className="text-[0.7rem] font-bold border-2 border-black px-[0.75rem] py-[0.35rem] uppercase tracking-widest whitespace-nowrap"
+              className="text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold border-2 border-black px-[0.75rem] py-[0.35rem] uppercase tracking-wider md:tracking-widest leading-tight whitespace-nowrap"
             >
               {tag}
             </span>
@@ -183,7 +183,7 @@ export default function MusicLinkCaseStudyPage() {
               >
                 <div className="flex items-center gap-[0.75rem]">
                   <Icono size="1.5rem" className="shrink-0" />
-                  <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+                  <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
                     {version}
                   </span>
                 </div>
@@ -245,7 +245,7 @@ export default function MusicLinkCaseStudyPage() {
                 key={num}
                 className="border-2 border-black p-[1.5rem] flex flex-col gap-[0.75rem] transition-colors duration-300 hover:bg-black hover:text-white active:bg-black active:text-white active:scale-[0.98]"
               >
-                <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+                <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
                   Capa
                 </span>
                 <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter">
@@ -313,7 +313,7 @@ export default function MusicLinkCaseStudyPage() {
                 <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter">
                   {nombre}
                 </h3>
-                <p className="text-xs uppercase font-bold tracking-[0.15em] opacity-80 break-words">
+                <p className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.15em] leading-tight opacity-80 break-words">
                   {permisos}
                 </p>
                 <p className="text-sm md:text-base leading-relaxed opacity-90 break-words">
@@ -352,7 +352,7 @@ export default function MusicLinkCaseStudyPage() {
               >
                 <div className="flex items-center justify-between">
                   <Icono size="1.5rem" className="shrink-0" />
-                  <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+                  <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
                     {numero}
                   </span>
                 </div>
@@ -371,7 +371,7 @@ export default function MusicLinkCaseStudyPage() {
       {/* CIERRE */}
       <Reveal>
         <section className="border-t-2 border-black pt-[3rem] md:pt-[4rem] flex flex-col gap-[1.5rem]">
-          <p className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+          <p className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
             Caso de estudio
           </p>
           <p className="text-xl sm:text-2xl md:text-4xl font-black uppercase tracking-tighter leading-tight max-w-[40rem] break-words hyphens-auto">
@@ -379,7 +379,7 @@ export default function MusicLinkCaseStudyPage() {
           </p>
           <Link
             href="/proyectos"
-            className="inline-flex items-center gap-[0.5rem] self-start text-xs uppercase font-bold tracking-[0.2em] mt-[1rem] hover:opacity-60 active:scale-[0.98] transition-all duration-300"
+            className="inline-flex items-center gap-[0.5rem] self-start text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight mt-[1rem] hover:opacity-60 active:scale-[0.98] transition-all duration-300"
           >
             <ArrowLeft size="1rem" className="shrink-0" />
             Volver a proyectos

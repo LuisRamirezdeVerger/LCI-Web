@@ -42,7 +42,7 @@ export const TechItemInteractivo = ({
     >
       <div className="flex items-center gap-[0.5rem]">
         <Code2 size="1.125rem" className="shrink-0" />
-        <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+        <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
           Stack
         </span>
       </div>

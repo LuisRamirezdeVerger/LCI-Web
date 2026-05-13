@@ -22,7 +22,7 @@ export const NavLink = ({
   if (variant === "cta") {
     return (
       <li
-        className={`rounded-full transition-all text-[0.65rem] md:text-[0.85rem] ${
+        className={`rounded-full transition-all text-[clamp(0.55rem,2vw,0.85rem)] leading-tight ${
           activo ? "bg-gray-800" : "bg-black hover:bg-gray-800"
         }`}
       >

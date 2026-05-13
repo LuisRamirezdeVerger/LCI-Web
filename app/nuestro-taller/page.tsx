@@ -4,6 +4,7 @@ import {
   Gauge,
   Mail,
   ShieldCheck,
+  Smartphone,
   Sparkles,
   TrendingUp,
   Wrench,
@@ -15,7 +16,7 @@ import { SectionTitle } from "@/components/SectionTitle";
 export const metadata: Metadata = {
   title: "Nuestro Taller | La Casa de los Inventos",
   description:
-    "Tres niveles de servicio para llevar tu idea al siguiente nivel: landing pages de alto rendimiento, MVPs y web apps transaccionales, y consultoría para proyectos en React / Next.js existentes.",
+    "Diferentes niveles de servicio para llevar tu idea al siguiente nivel: Presencia digital de alto rendimiento, MVPs y apps móviles transaccionales, y optimización o adaptación para proyectos en React / Next.js existentes.",
 };
 
 const EMAIL = "lacasadelosinventos@gmail.com";
@@ -27,25 +28,25 @@ const PILARES = [
     icono: Gauge,
     titulo: "Velocidad extrema",
     descripcion:
-      "Next.js + Vercel con LCP por debajo de 1.2s. Server Components, streaming y caching agresivo para que tu producto cargue antes de que el usuario parpadee.",
+      "Next.js + Vercel con carga de página por debajo de 1.2s. Usamos tecnologías avanzadas para que tu producto cargue antes de que el usuario parpadee.",
   },
   {
     icono: ShieldCheck,
     titulo: "Seguridad",
     descripcion:
-      "Arquitectura server-side por defecto, reglas de seguridad robustas en backend y validación en cada capa. Nada de credenciales en el cliente, nada de superficies expuestas.",
+      "Arquitectura server-side por defecto, reglas de seguridad robustas en backend y validación en cada capa. Nada de superficies expuestas.",
   },
   {
     icono: TrendingUp,
     titulo: "Escalabilidad",
     descripcion:
-      "Código limpio, tipado y modular. Cuando tu negocio crezca, el código no será el cuello de botella — está pensado desde el día uno para escalar contigo.",
+      "Código limpio, tipado y modular. Cuando tu negocio crezca, el código está pensado para escalar contigo.",
   },
 ] as const;
 
 export default function NuestroTallerPage() {
   return (
-    <main className="min-h-[90vh] w-full max-w-[100vw] overflow-x-hidden bg-white text-black px-[2rem] md:px-[5%] py-[4rem] md:py-[6rem] flex flex-col gap-[4rem] md:gap-[6rem]">
+    <main className="min-h-[90dvh] w-full max-w-[100vw] overflow-x-hidden bg-white text-black px-[2rem] md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-[6rem] flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-[6rem]">
       <PageHeader
         titulo="Nuestro"
         acento="Taller"
@@ -53,8 +54,7 @@ export default function NuestroTallerPage() {
           <>
             No vendemos plantillas. Cada{" "}
             <span className="font-black">invento</span> sale del taller hecho a
-            medida, optimizado y listo para crecer. Estos son los tres carriles
-            por los que entran los proyectos.
+            medida, optimizado y listo para crecer.
           </>
         }
       />
@@ -64,32 +64,32 @@ export default function NuestroTallerPage() {
         aria-labelledby="niveles"
         className="flex flex-col gap-[2.5rem]"
       >
-        <SectionTitle id="niveles">Tres niveles de servicio</SectionTitle>
+        <SectionTitle id="niveles">Niveles de servicio</SectionTitle>
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[18rem] gap-[1.5rem]">
           {/* Nivel 1 — Escaparate (esquina superior izquierda, peso visual ligero) */}
           <article className="md:col-span-2 border-2 border-black p-[2rem] flex flex-col justify-between gap-[1rem] bg-white text-black hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300">
             <div className="flex items-center justify-between gap-[1rem]">
-              <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
-                Nivel 01 · Presencia digital
+              <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
+                Nivel 01 · El Escaparate
               </span>
               <Sparkles size="1.25rem" className="shrink-0" />
             </div>
 
             <div className="flex flex-col gap-[0.75rem]">
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter break-words hyphens-auto">
-                El Escaparate
+                Presencia digital
               </h3>
               <p className="text-sm md:text-base leading-relaxed opacity-90 break-words">
                 Landing pages de alto rendimiento con Next.js, SEO técnico
-                perfecto y diseño responsivo. Ideal para bares, tiendas y
+                y diseño responsivo. Ideal para PYMES y
                 servicios profesionales.
               </p>
             </div>
 
             <div className="flex flex-wrap items-end justify-between gap-[1rem] pt-[1rem] border-t border-current/30">
               <div className="flex flex-col">
-                <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+                <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
                   Desde
                 </span>
                 <span className="text-3xl font-black tracking-tighter">
@@ -110,10 +110,10 @@ export default function NuestroTallerPage() {
           {/* Nivel 2 — Motor (peso visual dominante: 2x2, invertido, posición destacada) */}
           <article className="md:col-span-2 md:row-span-2 relative border-2 border-black p-[2.5rem] md:p-[3rem] flex flex-col justify-between gap-[1.5rem] bg-black text-white active:scale-[0.99] transition-transform duration-300">
             <div className="flex items-center justify-between gap-[1rem]">
-              <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
-                Nivel 02 · MVP & Web Apps
+              <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
+                Nivel 02 · El Motor
               </span>
-              <span className="inline-flex items-center gap-[0.4rem] text-[0.65rem] uppercase font-black tracking-[0.2em] bg-white text-black px-[0.6rem] py-[0.25rem]">
+              <span className="inline-flex items-center gap-[0.4rem] text-[clamp(0.55rem,2vw,0.65rem)] uppercase font-black tracking-wider md:tracking-[0.2em] leading-tight bg-white text-black px-[0.6rem] py-[0.25rem]">
                 <Zap size="0.75rem" className="shrink-0" />
                 Más popular
               </span>
@@ -121,7 +121,7 @@ export default function NuestroTallerPage() {
 
             <div className="flex flex-col gap-[1.25rem]">
               <h3 className="text-[2.5rem] md:text-[4rem] font-[900] uppercase tracking-tighter leading-[0.95] break-words hyphens-auto">
-                El Motor
+                MVP & Web Apps
               </h3>
               <p className="text-base md:text-lg leading-relaxed opacity-90 max-w-[28rem] break-words">
                 Aplicaciones web transaccionales a medida. Incluye bases de
@@ -138,7 +138,7 @@ export default function NuestroTallerPage() {
                 ].map((tag) => (
                   <li
                     key={tag}
-                    className="text-[0.7rem] font-bold border border-current px-[0.6rem] py-[0.25rem] uppercase tracking-widest whitespace-nowrap"
+                    className="text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold border border-current px-[0.6rem] py-[0.25rem] uppercase tracking-wider md:tracking-widest leading-tight whitespace-nowrap"
                   >
                     {tag}
                   </li>
@@ -148,11 +148,11 @@ export default function NuestroTallerPage() {
 
             <div className="flex flex-wrap items-end justify-between gap-[1rem] pt-[1.5rem] border-t-2 border-white/30">
               <div className="flex flex-col">
-                <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+                <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
                   Desde
                 </span>
                 <span className="text-[2.75rem] md:text-[3.5rem] font-[900] tracking-tighter leading-none">
-                  1.500€
+                  800€
                 </span>
               </div>
               <a
@@ -168,15 +168,15 @@ export default function NuestroTallerPage() {
           {/* Nivel 3 — Chapa y Pintura (esquina inferior izquierda, peso visual ligero) */}
           <article className="md:col-span-2 border-2 border-black p-[2rem] flex flex-col justify-between gap-[1rem] bg-white text-black hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300">
             <div className="flex items-center justify-between gap-[1rem]">
-              <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
-                Nivel 03 · Consultoría
+              <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
+                Nivel 03 · Chapa y Pintura
               </span>
               <Wrench size="1.25rem" className="shrink-0" />
             </div>
 
             <div className="flex flex-col gap-[0.75rem]">
               <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter break-words hyphens-auto">
-                Chapa y Pintura
+                Optimización
               </h3>
               <p className="text-sm md:text-base leading-relaxed opacity-90 break-words">
                 Auditoría de código, optimización de rendimiento, corrección de
@@ -187,7 +187,7 @@ export default function NuestroTallerPage() {
 
             <div className="flex flex-wrap items-end justify-between gap-[1rem] pt-[1rem] border-t border-current/30">
               <div className="flex flex-col">
-                <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+                <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
                   Modelo
                 </span>
                 <span className="text-2xl md:text-3xl font-black tracking-tighter">
@@ -196,6 +196,59 @@ export default function NuestroTallerPage() {
               </div>
               <a
                 href={mailto("Presupuesto · Chapa y Pintura (Consultoría)")}
+                className="inline-flex items-center gap-[0.5rem] bg-current px-[1.25rem] py-[0.65rem] text-sm font-black uppercase tracking-[0.1em] hover:-translate-y-[0.25rem] hover:shadow-lg hover:shadow-white/20 active:translate-y-0 active:scale-[0.98] active:shadow-none transition-all duration-300 ease-out"
+              >
+                <span className="text-white mix-blend-difference">
+                  Pedir presupuesto
+                </span>
+              </a>
+            </div>
+          </article>
+
+          {/* Nivel 4 — El Bolsillo (full width, cierre del bento) */}
+          <article className="md:col-span-4 border-2 border-black p-[clamp(1.5rem,4vw,3rem)] flex flex-col md:flex-row md:items-stretch justify-between gap-[clamp(1.5rem,3vw,2.5rem)] bg-white text-black hover:bg-black hover:text-white active:bg-black active:text-white transition-colors duration-300">
+            <div className="flex flex-col gap-[1rem] flex-1 min-w-0">
+              <div className="flex flex-wrap items-center justify-between gap-[1rem]">
+                <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
+                  Nivel 04 · El Bolsillo (App Móvil)
+                </span>
+                <Smartphone size="1.25rem" className="shrink-0" />
+              </div>
+
+              <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter break-words hyphens-auto">
+                Apps Nativas
+              </h3>
+              <p className="text-sm md:text-base leading-relaxed opacity-90 max-w-[40rem] break-words">
+                Lleva tu idea directamente al bolsillo de tus usuarios.
+                Desarrollo nativo de alto rendimiento, interfaces fluidas y
+                experiencia premium.
+              </p>
+
+              <ul className="flex flex-wrap gap-[0.5rem] mt-[0.25rem]">
+                {["Android", "Kotlin", "Jetpack Compose", "Firebase"].map(
+                  (tag) => (
+                    <li
+                      key={tag}
+                      className="text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold border border-current px-[0.6rem] py-[0.25rem] uppercase tracking-wider md:tracking-widest leading-tight whitespace-nowrap"
+                    >
+                      {tag}
+                    </li>
+                  ),
+                )}
+              </ul>
+            </div>
+
+            <div className="flex flex-wrap items-end justify-between md:flex-col md:items-end md:justify-between gap-[1rem] pt-[1rem] md:pt-0 md:pl-[clamp(1.5rem,3vw,2.5rem)] border-t md:border-t-0 md:border-l border-current/30">
+              <div className="flex flex-col md:items-end">
+                <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
+                  Desde
+                </span>
+                <span className="text-3xl md:text-4xl font-black tracking-tighter">
+                  1.500€
+                </span>
+              </div>
+              <a
+                href={mailto("Presupuesto · El Bolsillo (App Móvil)")}
                 className="inline-flex items-center gap-[0.5rem] bg-current px-[1.25rem] py-[0.65rem] text-sm font-black uppercase tracking-[0.1em] hover:-translate-y-[0.25rem] hover:shadow-lg hover:shadow-white/20 active:translate-y-0 active:scale-[0.98] active:shadow-none transition-all duration-300 ease-out"
               >
                 <span className="text-white mix-blend-difference">
@@ -243,7 +296,7 @@ export default function NuestroTallerPage() {
         aria-labelledby="cta-final"
         className="border-2 border-black bg-black text-white p-[2.5rem] md:p-[4rem] flex flex-col gap-[2rem]"
       >
-        <span className="text-xs uppercase font-bold tracking-[0.2em] opacity-70">
+        <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight opacity-70">
           Primera sesión sin coste
         </span>
         <h2
@@ -254,8 +307,7 @@ export default function NuestroTallerPage() {
         </h2>
         <p className="text-base md:text-lg max-w-[42rem] leading-relaxed opacity-90 break-words">
           Cuéntanos tu idea en una sesión de consultoría sin compromiso.
-          Salimos con un plan, un alcance y un precio cerrado — o con una
-          recomendación honesta si no encajamos.
+          Salimos con un plan, un alcance y un precio cerrado.
         </p>
 
         <div className="flex flex-wrap gap-[0.75rem] mt-[1rem]">
