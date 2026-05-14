@@ -11,10 +11,10 @@ export default function Home() {
         alt=""
         aria-hidden="true"
         priority
-        className="w-[20rem] md:w-[28rem] mt-[clamp(1.5rem,4dvh,2rem)] h-auto max-w-full animate-invento-flotando"
+        className="w-[20rem] md:w-[28rem] mt-[clamp(0.25rem,1dvh,0.5rem)] h-auto max-w-full animate-invento-flotando"
       />
 
-      <p className="mt-[clamp(2rem,4dvh,4rem)] text-[1.25rem] md:text-[1.75rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed">
+      <p className="mt-[clamp(0.25rem,1dvh,0.75rem)] text-[1.25rem] md:text-[1.75rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed">
         Generando espacios web y app móvil con un enfoque personalizado. 
 Apto para ocio y negocio.
       </p>

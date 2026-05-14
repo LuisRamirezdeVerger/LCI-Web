@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { NavLink } from "./NavLink";
 
@@ -11,53 +11,98 @@ const ENLACES = [
   { href: "/sobre-nosotros", etiqueta: "Sobre Nosotros" },
 ] as const;
 
+// Clases que mutan según el estado del scroll. Se extraen como tuplas para
+// que `classList.add/remove` reciba string[] sin overhead de parsing en cada
+// frame. Mantenerlas fuera del componente garantiza referencia estable.
+const FULL_VISIBLE = ["max-h-[24rem]", "py-[2rem]", "opacity-100"] as const;
+const FULL_HIDDEN = [
+  "max-h-0",
+  "py-0",
+  "opacity-0",
+  "pointer-events-none",
+] as const;
+const COMPACT_VISIBLE = ["max-h-[5rem]", "py-[1.5rem]", "opacity-100"] as const;
+const COMPACT_HIDDEN = [
+  "max-h-0",
+  "py-0",
+  "opacity-0",
+  "pointer-events-none",
+] as const;
+
 export const Navbar = () => {
-  const [isMounted, setIsMounted] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  // useRef → no dispara re-render con cada actualización del scroll
-  const lastScrollY = useRef(0);
+  // Refs a los dos contenedores. Toda la animación se conduce desde aquí,
+  // sin pasar por el reconciler de React.
+  const fullRef = useRef<HTMLDivElement>(null);
+  const compactRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setIsMounted(true);
+    const fullEl = fullRef.current;
+    const compactEl = compactRef.current;
+    if (!fullEl || !compactEl) return;
 
-    // Resolución dinámica de "1rem en píxeles" a partir del root font-size
-    // real del usuario. Si tiene accesibilidad activada con tamaño > 16px,
-    // los thresholds escalan con él automáticamente.
     const oneRem = parseFloat(
       getComputedStyle(document.documentElement).fontSize,
     );
-    const HIDE_DELTA = 5 * oneRem; // 5rem hacia abajo → ocultar
-    const SHOW_DELTA = 1 * oneRem; // 1rem hacia arriba → mostrar
-    const TOP_ZONE = 2 * oneRem;   // 2rem desde el top → siempre visible
+    // DELTA de tolerancia (1rem): filtro paso-bajo contra el jitter del
+    // touch en móvil. Por debajo de este umbral el movimiento se ignora.
+    const DELTA = 1 * oneRem;
+    // Zona superior: cerca del top el menú completo siempre es visible.
+    const TOP_ZONE = 2 * oneRem;
 
-    lastScrollY.current = window.scrollY;
+    let lastScrollY = window.scrollY;
+    // Estado local en clausura, NO en React. Evita por completo el ciclo
+    // render → reconciliation → commit que rompía la transición CSS.
+    let isCompact = false;
     let rafId: number | null = null;
+
+    const setCompact = (next: boolean) => {
+      if (next === isCompact) return; // idempotencia: nada que hacer
+      isCompact = next;
+
+      if (next) {
+        // Mostrar versión condensada (logo), ocultar versión completa.
+        fullEl.classList.remove(...FULL_VISIBLE);
+        fullEl.classList.add(...FULL_HIDDEN);
+        fullEl.setAttribute("aria-hidden", "true");
+
+        compactEl.classList.remove(...COMPACT_HIDDEN);
+        compactEl.classList.add(...COMPACT_VISIBLE);
+        compactEl.setAttribute("aria-hidden", "false");
+      } else {
+        // Restaurar versión completa, ocultar condensada.
+        fullEl.classList.remove(...FULL_HIDDEN);
+        fullEl.classList.add(...FULL_VISIBLE);
+        fullEl.setAttribute("aria-hidden", "false");
+
+        compactEl.classList.remove(...COMPACT_VISIBLE);
+        compactEl.classList.add(...COMPACT_HIDDEN);
+        compactEl.setAttribute("aria-hidden", "true");
+      }
+    };
 
     const evaluate = () => {
       rafId = null;
-      const currentY = window.scrollY;
-      const delta = currentY - lastScrollY.current;
+      const currentScrollY = window.scrollY;
 
-      if (currentY < TOP_ZONE) {
-        setIsScrolled(false);
-        lastScrollY.current = currentY;
+      // 1) Anclaje al top: dentro de la zona superior, expandido siempre.
+      if (currentScrollY < TOP_ZONE) {
+        lastScrollY = currentScrollY;
+        setCompact(false);
         return;
       }
-      if (delta > HIDE_DELTA) {
-        // Bajada significativa → ocultar menú
-        setIsScrolled(true);
-        lastScrollY.current = currentY;
-      } else if (delta < -SHOW_DELTA) {
-        // Subida significativa → mostrar menú
-        setIsScrolled(false);
-        lastScrollY.current = currentY;
-      }
-      // Zona muerta entre thresholds: NO se actualiza estado ni lastScrollY.
-      // Esto es la histéresis: micro-movimientos no producen flicker.
+
+      // 2) Filtro de tolerancia. NO actualizamos lastScrollY: dejamos que
+      //    los micro-movimientos se acumulen hasta cruzar DELTA de verdad.
+      if (Math.abs(currentScrollY - lastScrollY) < DELTA) return;
+
+      // 3) Dirección inequívoca tras cruzar el umbral.
+      const goingDown = currentScrollY > lastScrollY;
+      lastScrollY = currentScrollY;
+      setCompact(goingDown);
     };
 
     const onScroll = () => {
-      // Coalescemos múltiples eventos en un solo rAF para no saturar el render
+      // Coalescencia: un solo evaluate por frame de pintado.
       if (rafId !== null) return;
       rafId = requestAnimationFrame(evaluate);
     };
@@ -69,18 +114,15 @@ export const Navbar = () => {
     };
   }, []);
 
-  const showCompact = isMounted && isScrolled;
-
   return (
-    <nav className="backdrop-blur bg-white/75 w-full sticky top-0 z-50 border-b-2 border-black px-[5%]">
-      {/* Vista compacta — solo en móvil cuando hay scroll */}
+    <nav className="backdrop-blur bg-white/75 w-full sticky top-0 z-50 border-b-[0.125rem] border-black px-[5%]">
+      {/* Vista compacta — solo móvil. Estado inicial: oculta.
+          Las clases de transición viven en el className base, no se tocan.
+          Solo mutamos las clases binarias de visibilidad vía classList. */}
       <div
-        aria-hidden={!showCompact}
-        className={`md:hidden flex items-center justify-center overflow-hidden transition-all duration-300 ease-out ${
-          showCompact
-            ? "max-h-[5rem] py-[1.5rem] opacity-100 translate-y-0"
-            : "max-h-0 py-0 opacity-0 -translate-y-full pointer-events-none"
-        }`}
+        ref={compactRef}
+        aria-hidden="true"
+        className="md:hidden flex items-center justify-center overflow-hidden transition-all duration-300 ease-in-out max-h-0 py-0 opacity-0 pointer-events-none"
       >
         <Link
           href="/"
@@ -90,14 +132,15 @@ export const Navbar = () => {
         </Link>
       </div>
 
-      {/* Vista completa — siempre en desktop, oculta en móvil con scroll */}
+      {/* Vista completa — siempre en desktop, oculta en móvil con scroll.
+          Estado inicial: visible. Las utilidades md: garantizan que en
+          desktop nunca se respeten los valores móviles (max-h-none,
+          opacity-100, pointer-events-auto) aunque el listener intente
+          ocultarla — defensa en profundidad contra resize cross-breakpoint. */}
       <div
-        aria-hidden={showCompact}
-        className={`flex flex-col md:flex-row items-center justify-between overflow-hidden transition-all duration-300 ease-out gap-[1rem] md:gap-0 md:min-h-[10dvh] md:max-h-none md:py-0 md:opacity-100 md:translate-y-0 md:pointer-events-auto ${
-          showCompact
-            ? "max-h-0 py-0 opacity-0 -translate-y-full pointer-events-none"
-            : "max-h-[24rem] py-[2rem] opacity-100 translate-y-0"
-        }`}
+        ref={fullRef}
+        aria-hidden="false"
+        className="flex flex-col md:flex-row items-center justify-between overflow-hidden transition-all duration-300 ease-in-out gap-[1rem] md:gap-0 md:min-h-[10dvh] md:max-h-none md:py-0 md:opacity-100 md:pointer-events-auto max-h-[24rem] py-[2rem] opacity-100"
       >
         <Link
           href="/"
