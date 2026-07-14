@@ -1,0 +1,10 @@
+# La Casa de los Inventos — política de rastreo
+
+User-agent: *
+Allow: /
+
+# Rastreo explícito de imágenes para Google (favicon, OG, thumbnails)
+User-agent: Googlebot-Image
+Allow: /
+
+Sitemap: https://lacasadelosinventos.com/sitemap.xml

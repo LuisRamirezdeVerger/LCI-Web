@@ -4,7 +4,7 @@ import logoLCI from "@/components/logo_lci.svg";
 
 export default function Home() {
   return (
-    <main className="min-h-[90dvh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] pt-[clamp(3.5rem,5dvh,5rem)] pb-[clamp(2rem,6dvh,4rem)] md:pb-[6rem] flex flex-col items-center justify-start text-center gap-[clamp(1rem,3dvh,2.5rem)] md:gap-[2.5rem]">
+    <main className="min-h-[100svh] w-full bg-white px-[2rem] md:px-[5%] pt-[clamp(3.5rem,5dvh,5rem)] pb-[clamp(2rem,6dvh,4rem)] md:pb-[6rem] flex flex-col items-center justify-start text-center gap-[clamp(1rem,3dvh,2.5rem)] md:gap-[2.5rem]">
       <h1 className="sr-only">La Casa de los Inventos</h1>
       <Image
         src={logoLCI}

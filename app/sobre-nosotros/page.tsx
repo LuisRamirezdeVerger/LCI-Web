@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function SobreNosotrosPage() {
   return (
-    <main className="min-h-[90dvh] w-full max-w-[100vw] overflow-x-hidden bg-white px-[2rem] md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-[6rem] flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-[6rem]">
+    <main className="min-h-[100svh] w-full bg-white px-[2rem] md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-[6rem] flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-[6rem]">
       <PageHeader
         titulo="Sobre"
         acento="Nosotros"
