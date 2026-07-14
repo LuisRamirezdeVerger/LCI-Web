@@ -7,17 +7,18 @@ import { SectionTitle } from "@/components/SectionTitle";
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <article
-    className={`group/card relative cursor-pointer border-2 border-black rounded-[clamp(0.5rem,1vw,1.5rem)] p-[clamp(1.5rem,3vw,3rem)] bg-white text-black group-hover:scale-[0.85] hover:bg-black hover:text-white hover:!scale-[1.08] hover:z-10 hover:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] active:bg-black active:text-white active:scale-[0.98] will-change-transform transition-all duration-500 ease-out overflow-hidden ${
+    tabIndex={0}
+    className={`group/card relative cursor-pointer border-2 border-black rounded-[clamp(0.5rem,1vw,1.5rem)] p-[clamp(1.5rem,3vw,3rem)] bg-white text-black group-hover:scale-[0.85] group-focus-within:scale-[0.85] hover:bg-black hover:text-white hover:!scale-[1.08] hover:z-10 focus:!scale-[1.08] focus:z-10 active:!scale-[1.08] active:z-10 active:bg-black active:text-white focus:bg-black focus:text-white hover:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] focus:outline-none will-change-transform transition-all duration-500 ease-out overflow-hidden ${
       project.featured ? "md:col-span-2 md:row-span-2" : ""
     }`}
   >
     {project.gradient && (
       <div
         aria-hidden="true"
-        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover/card:opacity-100 transition-opacity duration-500 pointer-events-none`}
+        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover/card:opacity-100 group-focus/card:opacity-100 group-active/card:opacity-100 transition-opacity duration-500 pointer-events-none`}
       />
     )}
-    <div className="relative z-10 flex flex-col justify-between gap-[1.5rem] h-full group-hover/card:text-white transition-colors duration-500">
+    <div className="relative z-10 flex flex-col justify-between gap-[1.5rem] h-full group-hover/card:text-white group-focus/card:text-white group-active/card:text-white transition-colors duration-500">
       <span className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-bold tracking-wider md:tracking-widest leading-tight opacity-70">
         {project.discipline}
       </span>
