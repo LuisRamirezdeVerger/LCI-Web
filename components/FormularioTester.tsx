@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useActionState } from "react";
 import { CheckCircle2, Send, ShieldCheck } from "lucide-react";
 import {
@@ -121,6 +122,30 @@ export const FormularioTester = () => {
           disabled={pendiente}
           className="border-2 border-black p-[0.75rem] text-base font-medium bg-white text-black focus:outline-none focus:bg-black focus:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         />
+      </div>
+
+      <div className="flex items-start gap-[0.75rem]">
+        <input
+          id="acepta"
+          name="acepta"
+          type="checkbox"
+          required
+          disabled={pendiente}
+          className="mt-[0.25rem] w-[1.1rem] h-[1.1rem] shrink-0 accent-black disabled:opacity-50 disabled:cursor-not-allowed"
+        />
+        <label
+          htmlFor="acepta"
+          className="text-sm leading-relaxed break-words"
+        >
+          He leído y acepto la{" "}
+          <Link
+            href="/privacidad"
+            className="underline font-bold hover:opacity-70"
+          >
+            Política de Privacidad
+          </Link>
+          . <span className="opacity-70">Consentimiento obligatorio para procesar tu solicitud (RGPD).</span>
+        </label>
       </div>
 
       {estado?.error && (

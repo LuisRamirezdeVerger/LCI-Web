@@ -1,5 +1,12 @@
 import React from "react";
+import Link from "next/link";
 import { Mail, Linkedin, Github, Phone } from "lucide-react";
+
+const ENLACES_LEGALES = [
+  { href: "/aviso-legal", etiqueta: "Aviso Legal" },
+  { href: "/privacidad", etiqueta: "Privacidad" },
+  { href: "/cookies", etiqueta: "Cookies" },
+] as const;
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -36,9 +43,23 @@ export const Footer = () => {
           {/* Redes Sociales */}
       </div>
 
-      {/* Copyright */}
-      <div className="mt-[0.3rem] pt-[0.3rem] border-t border-white/10 flex justify-between text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold text-gray-600 uppercase tracking-wider md:tracking-widest leading-tight">
-        <span>© {currentYear} Luis Ramírez de Verger a.k.a Wito</span>
+      {/* Legal + Copyright */}
+      <div className="mt-[1.5rem] pt-[1rem] border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[1rem] text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold text-gray-500 uppercase tracking-wider md:tracking-widest leading-tight">
+        <ul className="flex flex-wrap justify-center sm:justify-start gap-x-[1.25rem] gap-y-[0.5rem]">
+          {ENLACES_LEGALES.map(({ href, etiqueta }) => (
+            <li key={href}>
+              <Link
+                href={href}
+                className="hover:text-white active:text-white transition-colors duration-300"
+              >
+                {etiqueta}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <span className="text-center sm:text-right text-gray-600">
+          © {currentYear} Luis Ramírez de Verger a.k.a Wito
+        </span>
       </div>
     </footer>
   );

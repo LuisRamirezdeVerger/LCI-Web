@@ -40,12 +40,22 @@ export async function enviarPostulacionTester(
   const email = String(formData.get("email") ?? "").trim();
   const interes = String(formData.get("interes") ?? "").trim();
   const verificacion = String(formData.get("verificacion") ?? "").trim();
+  const acepta = formData.get("acepta");
 
   // Validación de campos obligatorios.
   if (!nombre || !email) {
     return {
       success: false,
       error: "El nombre y el correo son obligatorios.",
+    };
+  }
+
+  // Validación RGPD server-side — el `required` HTML es bypassable.
+  if (acepta !== "on") {
+    return {
+      success: false,
+      error:
+        "Debes aceptar la Política de Privacidad para enviar el formulario.",
     };
   }
 
@@ -72,12 +82,14 @@ export async function enviarPostulacionTester(
         `Nombre: ${nombre}`,
         `Email: ${email}`,
         `Interés: ${interesLimpio}`,
+        `Consentimiento RGPD: aceptado el ${new Date().toISOString()}`,
       ].join("\n"),
       html: `
         <h2 style="font-family: Arial, sans-serif;">Nuevo Tester</h2>
         <p style="font-family: Arial, sans-serif;"><strong>Nombre:</strong> ${escaparHtml(nombre)}</p>
         <p style="font-family: Arial, sans-serif;"><strong>Email:</strong> ${escaparHtml(email)}</p>
         <p style="font-family: Arial, sans-serif;"><strong>Interés:</strong> ${escaparHtml(interesLimpio)}</p>
+        <p style="font-family: Arial, sans-serif; color:#555; font-size:0.85rem;"><strong>Consentimiento RGPD:</strong> aceptado el ${escaparHtml(new Date().toISOString())}</p>
       `,
     });
 
