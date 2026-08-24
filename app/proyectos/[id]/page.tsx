@@ -25,6 +25,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
+import { ScrollSpy } from "@/components/ScrollSpy";
 import { PROJECTS, type IconKey } from "@/data/projects";
 
 const ICONS: Record<IconKey, LucideIcon> = {
@@ -56,7 +57,7 @@ const EYEBROW =
 const VOLVER =
   "inline-flex items-center gap-2 self-start text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-widest leading-tight hover:opacity-60 active:scale-[0.98] transition-all duration-300";
 const CARD =
-  "border-2 border-black p-6 flex flex-col gap-3 transition-colors duration-300 hover:bg-black hover:text-white active:bg-black active:text-white active:scale-[0.98]";
+  "border-2 border-black p-6 flex flex-col gap-3 transition-colors duration-300 hover:bg-black hover:text-white data-[active=true]:bg-black data-[active=true]:text-white active:bg-black active:text-white active:scale-[0.98]";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -85,6 +86,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
 
   return (
     <main className="min-h-svh w-full bg-white text-black px-8 md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-24 flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-24">
+      <ScrollSpy>
       {/* Navegación flotante — glassmorphism */}
       <nav className="fixed bottom-[clamp(5.5rem,10svh,6.5rem)] right-[clamp(1.5rem,3vw,3rem)] z-50">
         <Link
@@ -142,7 +144,8 @@ export default async function ProyectoDetallePage({ params }: Props) {
                   return (
                     <article
                       key={nombre}
-                      className={`${cols} border-2 border-black p-8 flex flex-col justify-between gap-4 transition-colors duration-300 hover:bg-black hover:text-white active:bg-black active:text-white active:scale-[0.98] ${
+                      data-spy
+                      className={`${cols} border-2 border-black p-8 flex flex-col justify-between gap-4 transition-colors duration-300 hover:bg-black hover:text-white data-[active=true]:bg-black data-[active=true]:text-white active:bg-black active:text-white active:scale-[0.98] ${
                         invertido ? "bg-black text-white" : "bg-white text-black"
                       }`}
                     >
@@ -183,7 +186,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
 
             <ol className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {cs.arquitectura.capas.map(({ num, titulo, texto }) => (
-                <li key={num} className={CARD}>
+                <li key={num} data-spy className={CARD}>
                   <span className={EYEBROW}>Capa</span>
                   <span className="text-2xl md:text-3xl font-black uppercase tracking-tighter">
                     {num}
@@ -234,10 +237,11 @@ export default async function ProyectoDetallePage({ params }: Props) {
                   return (
                     <article
                       key={nombre}
+                      data-spy
                       className={`border-2 border-black p-8 flex flex-col gap-4 transition-colors duration-300 active:scale-[0.98] ${
                         invertido
                           ? "bg-black text-white"
-                          : "bg-white text-black hover:bg-black hover:text-white active:bg-black active:text-white"
+                          : "bg-white text-black hover:bg-black hover:text-white data-[active=true]:bg-black data-[active=true]:text-white active:bg-black active:text-white"
                       }`}
                     >
                       <Icono size="2rem" className="shrink-0" />
@@ -277,7 +281,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
               {cs.seguridad.capas.map(({ numero, titulo, icono, descripcion }) => {
                 const Icono = ICONS[icono];
                 return (
-                  <li key={numero} className={`${CARD} gap-4`}>
+                  <li key={numero} data-spy className={`${CARD} gap-4`}>
                     <div className="flex items-center justify-between">
                       <Icono size="1.5rem" className="shrink-0" />
                       <span className={EYEBROW}>{numero}</span>
@@ -340,6 +344,7 @@ export default async function ProyectoDetallePage({ params }: Props) {
           </Link>
         </section>
       </Reveal>
+      </ScrollSpy>
     </main>
   );
 }
