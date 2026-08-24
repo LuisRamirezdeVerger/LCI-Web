@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { ChevronDown } from "lucide-react";
 import { PROJECTS, type Project } from "@/data/projects";
@@ -9,52 +10,74 @@ interface CardProps {
   project: Project;
   isActive: boolean;
   cardRef: (el: HTMLElement | null) => void;
+  /** Escala reducida para grids anidados en contenedores con overflow-hidden. */
+  compactScale?: boolean;
 }
 
-const ProjectCard = ({ project, isActive, cardRef }: CardProps) => (
-  <article
-    ref={cardRef}
-    data-id={project.id}
-    data-active={isActive}
-    className={`group/card relative cursor-pointer border-2 border-black rounded-[clamp(0.5rem,1vw,1.5rem)] p-[clamp(1.5rem,3vw,3rem)] bg-white text-black group-hover/grid:scale-[0.85] group-data-[has-active=true]/grid:scale-[0.85] hover:bg-black hover:text-white hover:!scale-[1.08] hover:z-10 data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:!scale-[1.08] data-[active=true]:z-10 hover:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] data-[active=true]:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] will-change-transform transition-all duration-500 ease-out overflow-hidden ${
+const ProjectCard = ({
+  project,
+  isActive,
+  cardRef,
+  compactScale = false,
+}: CardProps) => (
+  <Link
+    href={`/proyectos/${project.id}`}
+    className={`block h-full ${
       project.featured ? "md:col-span-2 md:row-span-2" : ""
     }`}
   >
-    {project.gradient && (
-      <div
-        aria-hidden="true"
-        className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover/card:opacity-100 group-data-[active=true]/card:opacity-100 transition-opacity duration-500 pointer-events-none`}
-      />
-    )}
-    <div className="relative z-10 flex flex-col justify-between gap-[1.5rem] h-full group-hover/card:text-white group-data-[active=true]/card:text-white transition-colors duration-500">
-      <span className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-bold tracking-wider md:tracking-widest leading-tight opacity-70">
-        {project.discipline}
-      </span>
-      <div className="flex flex-col gap-[0.75rem]">
-        <h3
-          className={`font-black uppercase tracking-tighter leading-none break-words hyphens-auto ${
-            project.featured
-              ? "text-[clamp(1.75rem,5vw,3rem)]"
-              : "text-[clamp(1.25rem,3.5vw,1.875rem)]"
-          }`}
-        >
-          {project.title}
-        </h3>
-        <p className="text-[clamp(0.85rem,2vw,1rem)] leading-relaxed opacity-90 break-words">
-          {project.description}
-        </p>
+    <article
+      ref={cardRef}
+      data-id={project.id}
+      data-active={isActive}
+      className={`group/card relative h-full cursor-pointer border-2 border-black rounded-[clamp(0.5rem,1vw,1.5rem)] p-[clamp(1.5rem,3vw,3rem)] bg-white text-black group-hover/grid:scale-[0.85] group-data-[has-active=true]/grid:scale-[0.85] hover:bg-black hover:text-white hover:z-10 data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:z-10 ${
+        compactScale
+          ? "hover:!scale-[1.04] data-[active=true]:!scale-[1.04]"
+          : "hover:!scale-[1.08] data-[active=true]:!scale-[1.08]"
+      } hover:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] data-[active=true]:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] active:scale-[0.98] will-change-transform transition-all duration-500 ease-out overflow-hidden`}
+    >
+      {project.gradient && (
+        <div
+          aria-hidden="true"
+          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover/card:opacity-100 group-data-[active=true]/card:opacity-100 transition-opacity duration-500 pointer-events-none`}
+        />
+      )}
+      <div className="relative z-10 flex flex-col justify-between gap-[1.5rem] h-full group-hover/card:text-white group-data-[active=true]/card:text-white transition-colors duration-500">
+        <span className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-bold tracking-wider md:tracking-widest leading-tight opacity-70">
+          {project.discipline}
+        </span>
+        <div className="flex flex-col gap-[0.75rem]">
+          <h3
+            className={`font-black uppercase tracking-tighter leading-none break-words hyphens-auto ${
+              project.featured
+                ? "text-[clamp(1.75rem,5vw,3rem)]"
+                : "text-[clamp(1.25rem,3.5vw,1.875rem)]"
+            }`}
+          >
+            {project.title}
+          </h3>
+          <p className="text-[clamp(0.85rem,2vw,1rem)] leading-relaxed opacity-90 break-words">
+            {project.description}
+          </p>
+        </div>
       </div>
-    </div>
-  </article>
+    </article>
+  </Link>
 );
 
 interface GridProps {
   projects: Project[];
   activeId: string | null;
   registerRef: (id: string) => (el: HTMLElement | null) => void;
+  compactScale?: boolean;
 }
 
-const ProjectsGrid = ({ projects, activeId, registerRef }: GridProps) => {
+const ProjectsGrid = ({
+  projects,
+  activeId,
+  registerRef,
+  compactScale = false,
+}: GridProps) => {
   const hasActive = activeId != null && projects.some((p) => p.id === activeId);
   return (
     <div
@@ -67,6 +90,7 @@ const ProjectsGrid = ({ projects, activeId, registerRef }: GridProps) => {
           project={p}
           isActive={activeId === p.id}
           cardRef={registerRef(p.id)}
+          compactScale={compactScale}
         />
       ))}
     </div>
@@ -167,7 +191,7 @@ export const ProyectosGallery = () => {
           }`}
         >
           <div className="overflow-hidden">
-            <div className="[margin:calc(clamp(1.5rem,3vw,3rem)*-1)] p-[clamp(1.5rem,3vw,3rem)] flex flex-col gap-[clamp(2rem,4dvh,3rem)]">
+            <div className="[margin:calc(clamp(1.5rem,3vw,3rem)*-1)] p-[clamp(1.5rem,3vw,3rem)] flex flex-col gap-[clamp(2rem,4dvh,3rem)] overflow-hidden">
               <div>
                 <SectionTitle id="labs">
                   Laboratorio de La Casa de los Inventos
@@ -176,11 +200,14 @@ export const ProyectosGallery = () => {
                   Nuestras ideas y proyectos internos en fase de desarrollo.
                 </p>
               </div>
-              <ProjectsGrid
-                projects={internalProjects}
-                activeId={activeCard}
-                registerRef={registerRef}
-              />
+              <div className="p-[clamp(1rem,2.5vw,2.5rem)]">
+                <ProjectsGrid
+                  projects={internalProjects}
+                  activeId={activeCard}
+                  registerRef={registerRef}
+                  compactScale
+                />
+              </div>
             </div>
           </div>
         </div>
