@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Política de Privacidad",
   description:
     "Política de privacidad y protección de datos de La Casa de los Inventos, conforme al RGPD y la LOPDGDD.",
+  alternates: { canonical: "/privacidad" },
 };
 
 export default function PrivacidadPage() {

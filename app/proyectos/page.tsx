@@ -3,9 +3,10 @@ import { PageHeader } from "@/components/PageHeader";
 import { ProyectosGallery } from "@/components/ProyectosGallery";
 
 export const metadata: Metadata = {
-  title: "Proyectos | La Casa de los Inventos",
+  title: "Proyectos y Casos de Estudio",
   description:
-    "Laboratorio de proyectos filtrables por categoría: Apps móviles, Sistemas de gestión y Web. Cada invento es un experimento con enfoque en tecnología, diseño y usuario.",
+    "Casos de estudio reales de desarrollo: sistemas de gestión de turnos, software clínico, webs de conversión y apps móviles nativas en Android.",
+  alternates: { canonical: "/proyectos" },
 };
 
 export default function ProyectosPage() {

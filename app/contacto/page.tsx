@@ -7,7 +7,8 @@ import { SectionTitle } from "@/components/SectionTitle";
 export const metadata: Metadata = {
   title: "Contacto | La Casa de los Inventos",
   description:
-    "Ponte en contacto con La Casa de los Inventos. Hablemos de tu próximo proyecto, una colaboración o cualquier idea que merezca convertirse en producto.",
+    "Contacta con La Casa de los Inventos en Sevilla. Respondemos en menos de 48 horas por email o teléfono. Primera sesión de consultoría sin coste.",
+  alternates: { canonical: "/contacto" },
 };
 
 async function enviarMensaje(formData: FormData) {

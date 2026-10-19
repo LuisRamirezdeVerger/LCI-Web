@@ -12,11 +12,119 @@ import {
 } from "lucide-react";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionTitle } from "@/components/SectionTitle";
+import { JsonLd } from "@/components/JsonLd";
+import { FaqSection } from "@/components/FaqSection";
+import { FAQS_SERVICIOS } from "@/lib/faq";
+import { SITE_NAME, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Nuestro Taller | La Casa de los Inventos",
+  // El sufijo lo añade el `template` del layout: no lo repetimos aquí.
+  title: "Servicios y Precios de Desarrollo Web y Apps",
   description:
-    "Diferentes niveles de servicio para llevar tu idea al siguiente nivel: Presencia digital de alto rendimiento, MVPs y apps móviles transaccionales, y optimización o adaptación para proyectos en React / Next.js existentes.",
+    "Webs a medida desde 200 €, aplicaciones web desde 800 € y apps móviles nativas desde 1.500 €. Auditoría y optimización de proyectos React / Next.js por bolsa de horas.",
+  alternates: { canonical: "/nuestro-taller" },
+};
+
+/** Catálogo de servicios con precios reales → rich results de Google y citas de IA. */
+const serviciosLd = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: `Servicios de ${SITE_NAME}`,
+  url: `${SITE_URL}/nuestro-taller`,
+  provider: { "@id": `${SITE_URL}/#organization` },
+  itemListElement: [
+    {
+      "@type": "Offer",
+      name: "El Escaparate · Presencia digital",
+      description:
+        "Landing pages de alto rendimiento con Next.js, SEO técnico y diseño responsivo. Ideal para PYMES y servicios profesionales.",
+      price: "200",
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: "200",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+      itemOffered: {
+        "@type": "Service",
+        name: "Desarrollo de página web a medida",
+        serviceType: "Desarrollo web",
+        areaServed: { "@type": "Country", name: "España" },
+        provider: { "@id": `${SITE_URL}/#organization` },
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "El Motor · MVP y Web Apps",
+      description:
+        "Aplicaciones web transaccionales con base de datos, autenticación de usuarios y arquitectura escalable.",
+      price: "800",
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: "800",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+      itemOffered: {
+        "@type": "Service",
+        name: "Desarrollo de aplicación web a medida",
+        serviceType: "Desarrollo de software",
+        areaServed: { "@type": "Country", name: "España" },
+        provider: { "@id": `${SITE_URL}/#organization` },
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "El Bolsillo · Apps nativas",
+      description:
+        "Desarrollo nativo Android en Kotlin y Jetpack Compose, con interfaces fluidas y experiencia premium.",
+      price: "1500",
+      priceCurrency: "EUR",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        minPrice: "1500",
+        priceCurrency: "EUR",
+        valueAddedTaxIncluded: false,
+      },
+      itemOffered: {
+        "@type": "Service",
+        name: "Desarrollo de aplicación móvil nativa",
+        serviceType: "Desarrollo móvil",
+        areaServed: { "@type": "Country", name: "España" },
+        provider: { "@id": `${SITE_URL}/#organization` },
+      },
+    },
+    {
+      "@type": "Offer",
+      name: "Chapa y Pintura · Optimización",
+      description:
+        "Auditoría de código, optimización de rendimiento, corrección de bugs y actualización tecnológica de proyectos React / Next.js existentes.",
+      priceCurrency: "EUR",
+      itemOffered: {
+        "@type": "Service",
+        name: "Auditoría y optimización de software",
+        serviceType: "Consultoría técnica",
+        areaServed: { "@type": "Country", name: "España" },
+        provider: { "@id": `${SITE_URL}/#organization` },
+      },
+    },
+  ],
+};
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Servicios y precios",
+      item: `${SITE_URL}/nuestro-taller`,
+    },
+  ],
 };
 
 const EMAIL = "lacasadelosinventos@gmail.com";
@@ -59,12 +167,23 @@ export default function NuestroTallerPage() {
         }
       />
 
+      <JsonLd data={serviciosLd} />
+      <JsonLd data={breadcrumbLd} />
+
       {/* Sección 1: Niveles de servicio (Bento Grid asimétrico) */}
       <section
         aria-labelledby="niveles"
         className="flex flex-col gap-[2.5rem]"
       >
         <SectionTitle id="niveles">Niveles de servicio</SectionTitle>
+
+        {/* Párrafo AEO (Answer-First): respuesta directa en 40-60 palabras */}
+        <p className="text-[clamp(1.05rem,2.4vw,1.25rem)] leading-relaxed max-w-[46rem] font-medium">
+          Trabajamos en cuatro niveles según el alcance del proyecto: una web a
+          medida parte de 200 €, una aplicación web transaccional de 800 € y una
+          app móvil nativa de 1.500 €. La optimización de proyectos ya
+          existentes se contrata por bolsa de horas.
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-4 md:auto-rows-[18rem] gap-[1.5rem]">
           {/* Nivel 1 — Escaparate (esquina superior izquierda, peso visual ligero) */}
@@ -290,6 +409,12 @@ export default function NuestroTallerPage() {
           ))}
         </ul>
       </section>
+
+      {/* AEO — FAQPage */}
+      <FaqSection
+        faqs={FAQS_SERVICIOS}
+        intro="Precios, plazos y tecnologías: lo que nos preguntan antes de contratar."
+      />
 
       {/* CTA final */}
       <section

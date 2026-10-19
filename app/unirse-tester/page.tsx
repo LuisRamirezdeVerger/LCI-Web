@@ -7,6 +7,7 @@ export const metadata: Metadata = {
   title: "Postula como Tester | La Casa de los Inventos",
   description:
     "Únete al programa de testers de La Casa de los Inventos. Cuéntanos qué te interesa probar y te avisaremos cuando abramos un nuevo cupo.",
+  alternates: { canonical: "/unirse-tester" },
 };
 
 export default function UnirseTesterPage() {

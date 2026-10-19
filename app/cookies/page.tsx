@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Política de Cookies",
   description:
     "Uso de cookies en La Casa de los Inventos: solo técnicas y análisis anónimo sin cookies, exentos por el art. 22.2 LSSI-CE.",
+  alternates: { canonical: "/cookies" },
 };
 
 export default function CookiesPage() {

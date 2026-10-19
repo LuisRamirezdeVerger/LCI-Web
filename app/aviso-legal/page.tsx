@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   title: "Aviso Legal",
   description:
     "Aviso legal y condiciones de uso de La Casa de los Inventos, en cumplimiento de la LSSI-CE.",
+  alternates: { canonical: "/aviso-legal" },
 };
 
 export default function AvisoLegalPage() {

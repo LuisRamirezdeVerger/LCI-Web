@@ -26,7 +26,9 @@ import {
 } from "lucide-react";
 import { Reveal } from "@/components/Reveal";
 import { ScrollSpy } from "@/components/ScrollSpy";
-import { PROJECTS, type IconKey } from "@/data/projects";
+import { JsonLd } from "@/components/JsonLd";
+import { PROJECTS, type IconKey, type Project } from "@/data/projects";
+import { SITE_URL } from "@/lib/seo";
 
 const ICONS: Record<IconKey, LucideIcon> = {
   code: Code2,
@@ -71,11 +73,64 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const project = PROJECTS.find((p) => p.id === id);
   if (!project) return { title: "Proyecto no encontrado" };
+
+  const description = project.caseStudy?.tagline ?? project.description;
+  const title = project.caseStudy
+    ? `${project.title} · Caso de Estudio`
+    : project.title;
+
   return {
-    title: project.caseStudy ? `${project.title} · Caso de Estudio` : project.title,
-    description: project.caseStudy?.tagline ?? project.description,
+    title,
+    description,
+    alternates: { canonical: `/proyectos/${project.id}` },
+    openGraph: {
+      type: "article",
+      title,
+      description,
+      url: `${SITE_URL}/proyectos/${project.id}`,
+      images: [{ url: project.image, alt: project.title }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [project.image] },
   };
 }
+
+/** Schema del caso de estudio: lo que una IA cita cuando describe el proyecto. */
+const proyectoLd = (project: Project) => ({
+  "@context": "https://schema.org",
+  "@type": project.discipline === "App Móvil" ? "SoftwareApplication" : "CreativeWork",
+  name: project.title,
+  url: `${SITE_URL}/proyectos/${project.id}`,
+  image: `${SITE_URL}${project.image}`,
+  description: project.caseStudy?.tagline ?? project.description,
+  inLanguage: "es-ES",
+  ...(project.discipline === "App Móvil" && {
+    applicationCategory: "MobileApplication",
+    operatingSystem: "Android",
+  }),
+  ...(project.caseStudy?.tags && { keywords: project.caseStudy.tags.join(", ") }),
+  creator: { "@id": `${SITE_URL}/#organization` },
+  publisher: { "@id": `${SITE_URL}/#organization` },
+});
+
+const breadcrumbLd = (project: Project) => ({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Inicio", item: SITE_URL },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Proyectos",
+      item: `${SITE_URL}/proyectos`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: project.title,
+      item: `${SITE_URL}/proyectos/${project.id}`,
+    },
+  ],
+});
 
 export default async function ProyectoDetallePage({ params }: Props) {
   const { id } = await params;
@@ -86,6 +141,8 @@ export default async function ProyectoDetallePage({ params }: Props) {
 
   return (
     <main className="min-h-svh w-full bg-white text-black px-8 md:px-[5%] py-[clamp(2rem,6dvh,4rem)] md:py-24 flex flex-col gap-[clamp(2rem,5dvh,4rem)] md:gap-24">
+      <JsonLd data={proyectoLd(project)} />
+      <JsonLd data={breadcrumbLd(project)} />
       <ScrollSpy>
       {/* Navegación flotante — glassmorphism */}
       <nav className="fixed bottom-[clamp(5.5rem,10svh,6.5rem)] right-[clamp(1.5rem,3vw,3rem)] z-50">

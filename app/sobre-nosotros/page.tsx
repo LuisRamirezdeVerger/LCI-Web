@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "Sobre Nosotros | La Casa de los Inventos",
   description:
     "Conoce cómo trabajamos en La Casa de los Inventos: nuestra metodología, principios de diseño y el stack tecnológico que utilizamos para construir productos web y móviles bajo la filosofía de \"no hay límites\".",
+  alternates: { canonical: "/sobre-nosotros" },
 };
 
 export default function SobreNosotrosPage() {

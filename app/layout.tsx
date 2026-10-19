@@ -2,63 +2,123 @@ import type { Metadata } from "next";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
+import { PERFILES, SITE_EMAIL, SITE_NAME, SITE_URL } from "@/lib/seo";
 import "./globals.css";
 
-const SITE_URL = "https://lacasadelosinventos.com";
+const DESCRIPCION =
+  "Agencia de desarrollo de software en Sevilla: webs a medida con Next.js desde 200 €, aplicaciones web desde 800 € y apps móviles nativas desde 1.500 €.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "La Casa de los Inventos | Agencia de Desarrollo de Software en Sevilla",
-    template: "%s | La Casa de los Inventos",
+    default: `${SITE_NAME} | Agencia de Desarrollo de Software en Sevilla`,
+    template: `%s | ${SITE_NAME}`,
   },
-  description:
-    "Agencia de desarrollo web a medida, apps móviles y sistemas de gestión en Sevilla. Producto tipado, rápido y escalable.",
+  description: DESCRIPCION,
+  alternates: { canonical: "/" },
+  applicationName: SITE_NAME,
+  authors: [{ name: "Luis Ramírez de Verger", url: PERFILES[0] }],
+  creator: "Luis Ramírez de Verger",
+  publisher: SITE_NAME,
+  keywords: [
+    "desarrollo web a medida Sevilla",
+    "agencia desarrollo software Sevilla",
+    "apps móviles nativas",
+    "sistemas de gestión ERP CRM",
+    "desarrollo Next.js",
+    "programador freelance Sevilla",
+  ],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "es_ES",
     url: SITE_URL,
-    siteName: "La Casa de los Inventos",
-    title:
-      "La Casa de los Inventos | Agencia de Desarrollo de Software en Sevilla",
-    description:
-      "Desarrollo web a medida, apps móviles y sistemas de gestión desde Sevilla.",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | Agencia de Desarrollo de Software en Sevilla`,
+    description: DESCRIPCION,
+    images: [{ url: "/icon.png", alt: SITE_NAME }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "La Casa de los Inventos | Desarrollo de Software en Sevilla",
-    description:
-      "Desarrollo web a medida, apps móviles y sistemas de gestión desde Sevilla.",
+    title: `${SITE_NAME} | Desarrollo de Software en Sevilla`,
+    description: DESCRIPCION,
+    images: ["/icon.png"],
   },
 };
 
-const jsonLd = {
+/** Entidad principal: define quiénes somos para el knowledge graph. */
+const organizationLd = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
-  name: "La Casa de los Inventos",
+  "@id": `${SITE_URL}/#organization`,
+  name: SITE_NAME,
   url: SITE_URL,
-  email: "lacasadelosinventos@gmail.com",
-  description:
-    "Agencia de desarrollo de software: web a medida, apps móviles y sistemas de gestión para pymes y startups.",
-  areaServed: {
-    "@type": "City",
-    name: "Sevilla",
-    address: { "@type": "PostalAddress", addressRegion: "Sevilla", addressCountry: "ES" },
-  },
+  email: SITE_EMAIL,
+  telephone: "+34680300273",
+  image: `${SITE_URL}/icon.png`,
+  logo: `${SITE_URL}/icon.png`,
+  description: DESCRIPCION,
+  priceRange: "200€ – 10.000€",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Avda. Santa Clara de Cuba 5",
+    postalCode: "41007",
     addressLocality: "Sevilla",
     addressRegion: "Sevilla",
     addressCountry: "ES",
   },
-  serviceType: [
-    "Desarrollo web a medida",
-    "Aplicaciones móviles nativas",
-    "Sistemas de gestión (ERP / CRM)",
+  areaServed: [
+    { "@type": "City", name: "Sevilla" },
+    { "@type": "Country", name: "España" },
   ],
-  founder: { "@type": "Person", name: "Luis Ramírez de Verger" },
+  knowsAbout: [
+    "Desarrollo web a medida",
+    "Next.js",
+    "React",
+    "TypeScript",
+    "Aplicaciones móviles Android",
+    "Kotlin",
+    "Jetpack Compose",
+    "Firebase",
+    "Supabase",
+    "Sistemas de gestión ERP y CRM",
+    "SEO técnico",
+    "Progressive Web Apps",
+  ],
+  founder: {
+    "@type": "Person",
+    "@id": `${SITE_URL}/#founder`,
+    name: "Luis Ramírez de Verger",
+    jobTitle: "Desarrollador de software full-stack",
+    email: SITE_EMAIL,
+    sameAs: [...PERFILES],
+    knowsAbout: ["Next.js", "React", "TypeScript", "Kotlin", "Firebase"],
+  },
+  sameAs: [...PERFILES],
+};
+
+/** Entidad del sitio, vinculada a la organización por @id. */
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: SITE_NAME,
+  inLanguage: "es-ES",
+  description: DESCRIPCION,
+  publisher: { "@id": `${SITE_URL}/#organization` },
 };
 
 export default function RootLayout({
@@ -69,10 +129,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body className="relative flex flex-col min-h-screen">
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-        />
+        <JsonLd data={organizationLd} />
+        <JsonLd data={websiteLd} />
         {/* Centinela observado por IntersectionObserver del Navbar. */}
         <div
           id="scroll-sentinel"
