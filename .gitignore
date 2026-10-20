@@ -44,3 +44,11 @@ next-env.d.ts
 LCI.md
 *.md
 .vercel
+
+# Skills universales instaladas por `npx skills add`
+.agents/
+
+# Excepción: las skills del proyecto y la documentación base sí se versionan
+!.claude/skills/**/SKILL.md
+!README.md
+!guia_de_seo_y_aeo.md
