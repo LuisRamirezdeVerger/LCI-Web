@@ -5,10 +5,10 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { JsonLd } from "@/components/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
 import { PERFILES, SITE_EMAIL, SITE_NAME, SITE_URL } from "@/lib/seo";
+import { PRECIOS, RANGO_PRECIOS } from "@/lib/pricing";
 import "./globals.css";
 
-const DESCRIPCION =
-  "Agencia de desarrollo de software en Sevilla: webs a medida con Next.js desde 200 €, aplicaciones web desde 800 € y apps móviles nativas desde 1.500 €.";
+const DESCRIPCION = `Agencia de desarrollo de software en Sevilla: webs a medida con Next.js desde ${PRECIOS.escaparate.texto} €, aplicaciones web desde ${PRECIOS.motor.texto} € y apps móviles nativas desde ${PRECIOS.bolsillo.texto} €.`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,7 +70,7 @@ const organizationLd = {
   image: `${SITE_URL}/icon.png`,
   logo: `${SITE_URL}/icon.png`,
   description: DESCRIPCION,
-  priceRange: "200€ – 10.000€",
+  priceRange: RANGO_PRECIOS,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Avda. Santa Clara de Cuba 5",

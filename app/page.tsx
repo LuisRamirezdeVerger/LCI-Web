@@ -5,27 +5,28 @@ import logoLCI from "@/components/logo_lci.svg";
 import { SectionTitle } from "@/components/SectionTitle";
 import { FaqSection } from "@/components/FaqSection";
 import { FAQS_SERVICIOS } from "@/lib/faq";
+import { PRECIOS } from "@/lib/pricing";
 
 const SERVICIOS = [
   {
     nombre: "Webs a medida",
-    desde: "200 €",
+    desde: `${PRECIOS.escaparate.texto} €`,
     texto:
       "Landing pages y webs corporativas con Next.js, SEO técnico incluido y carga por debajo de 1,2 s.",
   },
   {
     nombre: "Aplicaciones web",
-    desde: "800 €",
+    desde: `${PRECIOS.motor.texto} €`,
     texto:
       "Software transaccional con base de datos, autenticación de usuarios y lógica de negocio a medida.",
   },
   {
     nombre: "Apps móviles nativas",
-    desde: "1.500 €",
+    desde: `${PRECIOS.bolsillo.texto} €`,
     texto:
       "Android nativo en Kotlin y Jetpack Compose, con rendimiento y acceso completo al hardware.",
   },
-] as const;
+];
 
 export default function Home() {
   return (
@@ -114,6 +115,7 @@ Apto para ocio y negocio.
       <section className="w-full px-[2rem] md:px-[5%] py-[clamp(3rem,8dvh,6rem)] border-t-2 border-black">
         <FaqSection
           faqs={FAQS_SERVICIOS}
+          withSchema={false}
           intro="Las dudas que nos llegan con más frecuencia sobre plazos, precios y tecnologías."
         />
       </section>

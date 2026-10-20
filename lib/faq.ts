@@ -1,3 +1,5 @@
+import { PRECIOS } from "@/lib/pricing";
+
 export interface Faq {
   pregunta: string;
   /** Respuesta directa de 40-60 palabras (formato Answer-First / BLUF). */
@@ -12,7 +14,7 @@ export const FAQS_SERVICIOS: Faq[] = [
   {
     pregunta: "¿Cuánto cuesta una página web a medida?",
     respuesta:
-      "En La Casa de los Inventos una landing page de alto rendimiento parte de 200 €. Una aplicación web transaccional con base de datos y autenticación parte de 800 €, y el desarrollo de una app móvil nativa parte de 1.500 €. El precio final depende del alcance funcional, que cerramos antes de empezar.",
+      `En La Casa de los Inventos una landing page de alto rendimiento parte de ${PRECIOS.escaparate.texto} €. Una aplicación web transaccional con base de datos y autenticación parte de ${PRECIOS.motor.texto} €, y el desarrollo de una app móvil nativa parte de ${PRECIOS.bolsillo.texto} €. El precio final depende del alcance funcional, que cerramos antes de empezar.`,
   },
   {
     pregunta: "¿Qué es el desarrollo web a medida?",

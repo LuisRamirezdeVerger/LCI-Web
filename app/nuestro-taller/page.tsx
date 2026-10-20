@@ -16,12 +16,13 @@ import { JsonLd } from "@/components/JsonLd";
 import { FaqSection } from "@/components/FaqSection";
 import { FAQS_SERVICIOS } from "@/lib/faq";
 import { SITE_NAME, SITE_URL } from "@/lib/seo";
+import { MONEDA, PRECIOS } from "@/lib/pricing";
 
 export const metadata: Metadata = {
   // El sufijo lo añade el `template` del layout: no lo repetimos aquí.
   title: "Servicios y Precios de Desarrollo Web y Apps",
   description:
-    "Webs a medida desde 200 €, aplicaciones web desde 800 € y apps móviles nativas desde 1.500 €. Auditoría y optimización de proyectos React / Next.js por bolsa de horas.",
+    `Webs a medida desde ${PRECIOS.escaparate.texto} €, aplicaciones web desde ${PRECIOS.motor.texto} € y apps móviles nativas desde ${PRECIOS.bolsillo.texto} €. Auditoría y optimización de proyectos React / Next.js por bolsa de horas.`,
   alternates: { canonical: "/nuestro-taller" },
 };
 
@@ -38,12 +39,12 @@ const serviciosLd = {
       name: "El Escaparate · Presencia digital",
       description:
         "Landing pages de alto rendimiento con Next.js, SEO técnico y diseño responsivo. Ideal para PYMES y servicios profesionales.",
-      price: "200",
-      priceCurrency: "EUR",
+      price: PRECIOS.escaparate.schema,
+      priceCurrency: MONEDA,
       priceSpecification: {
         "@type": "PriceSpecification",
-        minPrice: "200",
-        priceCurrency: "EUR",
+        minPrice: PRECIOS.escaparate.schema,
+        priceCurrency: MONEDA,
         valueAddedTaxIncluded: false,
       },
       itemOffered: {
@@ -59,12 +60,12 @@ const serviciosLd = {
       name: "El Motor · MVP y Web Apps",
       description:
         "Aplicaciones web transaccionales con base de datos, autenticación de usuarios y arquitectura escalable.",
-      price: "800",
-      priceCurrency: "EUR",
+      price: PRECIOS.motor.schema,
+      priceCurrency: MONEDA,
       priceSpecification: {
         "@type": "PriceSpecification",
-        minPrice: "800",
-        priceCurrency: "EUR",
+        minPrice: PRECIOS.motor.schema,
+        priceCurrency: MONEDA,
         valueAddedTaxIncluded: false,
       },
       itemOffered: {
@@ -80,12 +81,12 @@ const serviciosLd = {
       name: "El Bolsillo · Apps nativas",
       description:
         "Desarrollo nativo Android en Kotlin y Jetpack Compose, con interfaces fluidas y experiencia premium.",
-      price: "1500",
-      priceCurrency: "EUR",
+      price: PRECIOS.bolsillo.schema,
+      priceCurrency: MONEDA,
       priceSpecification: {
         "@type": "PriceSpecification",
-        minPrice: "1500",
-        priceCurrency: "EUR",
+        minPrice: PRECIOS.bolsillo.schema,
+        priceCurrency: MONEDA,
         valueAddedTaxIncluded: false,
       },
       itemOffered: {
@@ -101,7 +102,7 @@ const serviciosLd = {
       name: "Chapa y Pintura · Optimización",
       description:
         "Auditoría de código, optimización de rendimiento, corrección de bugs y actualización tecnológica de proyectos React / Next.js existentes.",
-      priceCurrency: "EUR",
+      priceCurrency: MONEDA,
       itemOffered: {
         "@type": "Service",
         name: "Auditoría y optimización de software",
@@ -180,8 +181,9 @@ export default function NuestroTallerPage() {
         {/* Párrafo AEO (Answer-First): respuesta directa en 40-60 palabras */}
         <p className="text-[clamp(1.05rem,2.4vw,1.25rem)] leading-relaxed max-w-[46rem] font-medium">
           Trabajamos en cuatro niveles según el alcance del proyecto: una web a
-          medida parte de 200 €, una aplicación web transaccional de 800 € y una
-          app móvil nativa de 1.500 €. La optimización de proyectos ya
+          medida parte de {PRECIOS.escaparate.texto} €, una aplicación web
+          transaccional de {PRECIOS.motor.texto} € y una app móvil nativa de{" "}
+          {PRECIOS.bolsillo.texto} €. La optimización de proyectos ya
           existentes se contrata por bolsa de horas.
         </p>
 
@@ -212,7 +214,7 @@ export default function NuestroTallerPage() {
                   Desde
                 </span>
                 <span className="text-3xl font-black tracking-tighter">
-                  200€
+                  {PRECIOS.escaparate.texto}€
                 </span>
               </div>
               <a
@@ -271,7 +273,7 @@ export default function NuestroTallerPage() {
                   Desde
                 </span>
                 <span className="text-[2.75rem] md:text-[3.5rem] font-[900] tracking-tighter leading-none">
-                  800€
+                  {PRECIOS.motor.texto}€
                 </span>
               </div>
               <a
@@ -363,7 +365,7 @@ export default function NuestroTallerPage() {
                   Desde
                 </span>
                 <span className="text-3xl md:text-4xl font-black tracking-tighter">
-                  1.500€
+                  {PRECIOS.bolsillo.texto}€
                 </span>
               </div>
               <a

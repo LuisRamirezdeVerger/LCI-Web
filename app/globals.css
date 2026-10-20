@@ -1,12 +1,65 @@
 @import "tailwindcss";
 
+/*
+ * Tokens de marca — Tailwind v4 (CSS-first).
+ * Migrados desde el antiguo `tailwind.config.ts`. Cada variable bajo `@theme`
+ * genera automáticamente sus utilities: `--color-inventor-principal` habilita
+ * `bg-inventor-principal`, `text-inventor-principal`, `border-…`, etc.
+ */
+@theme {
+  /* Paleta */
+  --color-inventor-principal: #2563eb;
+  --color-inventor-oscuro: #1e293b;
+  --color-inventor-acento: #f59e0b;
+
+  /* Escala de espaciado propia → mt-seccion, gap-bloque, py-seccion… */
+  --spacing-seccion: 5rem;
+  --spacing-bloque: 2.5rem;
+
+  /* Animaciones → animate-invento-flotando, animate-fade-in, animate-fade-in-up */
+  --animate-invento-flotando: flotar 3s ease-in-out infinite;
+  --animate-fade-in: fade-in 0.7s ease-out forwards;
+  --animate-fade-in-up: fade-in-up 0.7s ease-out forwards;
+
+  @keyframes flotar {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-1rem);
+    }
+  }
+
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fade-in-up {
+    0% {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #000000;
 }
 
-html, body {
-  /* Red anti-overflow global: liberamos a cada <main> de tener que repetirlo */
+html,
+body {
+  /* Red anti-overflow global: libera a cada <main> de tener que repetirlo */
   overflow-x: hidden;
 }
 
@@ -17,4 +70,16 @@ body {
   margin: 0;
   padding: 0;
   -webkit-font-smoothing: antialiased;
+}
+
+/* Respeta la preferencia del sistema de reducir movimiento (WCAG 2.2 AA). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
