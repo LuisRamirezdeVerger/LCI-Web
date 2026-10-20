@@ -33,3 +33,71 @@ export const PRECIO_MAXIMO: Precio = {
 
 /** `priceRange` para el schema `ProfessionalService`. */
 export const RANGO_PRECIOS = `${PRECIOS.escaparate.texto}€ – ${PRECIO_MAXIMO.texto}€`;
+
+/* ------------------------------------------------------------------ *
+ * Metadata de planes
+ *
+ * Vive junto a los precios para que `PricingSection` pueda iterar datos
+ * en lugar de hardcodear nombres: misma razón por la que centralizamos las
+ * cifras. El copy es el mismo que ya usa /nuestro-taller.
+ * ------------------------------------------------------------------ */
+
+export interface Plan {
+  id: keyof typeof PRECIOS;
+  /** Supra-título corto: "Nivel 01 · El Escaparate". */
+  nivel: string;
+  /** Nombre comercial del plan. */
+  nombre: string;
+  descripcion: string;
+  /** Tecnologías o entregables clave — se listan como <ul>. */
+  incluye: readonly string[];
+  precio: Precio;
+  /** Marca la tarjeta central como destacada. */
+  destacado: boolean;
+}
+
+export const PLANES: readonly Plan[] = [
+  {
+    id: "escaparate",
+    nivel: "Nivel 01 · El Escaparate",
+    nombre: "Presencia digital",
+    descripcion:
+      "Landing pages de alto rendimiento con Next.js, SEO técnico y diseño responsivo. Ideal para PYMES y servicios profesionales.",
+    incluye: ["Next.js + TS", "SEO técnico", "Responsive", "Despliegue"],
+    precio: PRECIOS.escaparate,
+    destacado: false,
+  },
+  {
+    id: "motor",
+    nivel: "Nivel 02 · El Motor",
+    nombre: "MVP & Web Apps",
+    descripcion:
+      "Aplicaciones web transaccionales a medida. Incluye bases de datos (Firebase), autenticación de usuarios, lógica de negocio compleja y arquitectura escalable.",
+    incluye: ["Next.js + TS", "Firebase", "Auth", "Server Actions"],
+    precio: PRECIOS.motor,
+    destacado: true,
+  },
+  {
+    id: "bolsillo",
+    nivel: "Nivel 03 · El Bolsillo",
+    nombre: "Apps Nativas",
+    descripcion:
+      "Lleva tu idea directamente al bolsillo de tus usuarios. Desarrollo nativo de alto rendimiento, interfaces fluidas y experiencia premium.",
+    incluye: ["Android", "Kotlin", "Jetpack Compose", "Firebase"],
+    precio: PRECIOS.bolsillo,
+    destacado: false,
+  },
+] as const;
+
+/**
+ * Servicio de tarifa abierta. No es un cuarto nivel: se cobra por bolsa de
+ * horas, así que se presenta aparte de los planes de precio cerrado.
+ */
+export const SERVICIO_HORAS = {
+  nivel: "Nivel 04 · Chapa y Pintura",
+  nombre: "Optimización",
+  descripcion:
+    "Auditoría de código, optimización de rendimiento, corrección de bugs y actualización tecnológica de proyectos en React / Next.js.",
+  modelo: "Bolsa de horas",
+  incluye: ["Auditoría", "Rendimiento", "Bugfixing", "Actualización"],
+} as const;
