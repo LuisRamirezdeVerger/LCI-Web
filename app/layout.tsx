@@ -91,7 +91,6 @@ const organizationLd = {
     "Aplicaciones móviles Android",
     "Kotlin",
     "Jetpack Compose",
-    "Firebase",
     "Supabase",
     "Sistemas de gestión ERP y CRM",
     "SEO técnico",
@@ -104,7 +103,7 @@ const organizationLd = {
     jobTitle: "Desarrollador de software full-stack",
     email: SITE_EMAIL,
     sameAs: [...PERFILES],
-    knowsAbout: ["Next.js", "React", "TypeScript", "Kotlin", "Firebase"],
+    knowsAbout: ["Next.js", "React", "TypeScript", "Kotlin", "Supabase"],
   },
   sameAs: [...PERFILES],
 };

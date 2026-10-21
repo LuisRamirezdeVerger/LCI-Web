@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin, Clock, Send } from "lucide-react";
+import { MapPin, Clock } from "lucide-react";
 import { CANALES } from "@/lib/contacto";
 import { PageHeader } from "@/components/PageHeader";
 import { SectionTitle } from "@/components/SectionTitle";
@@ -11,12 +11,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/contacto" },
 };
 
-async function enviarMensaje(formData: FormData) {
-  "use server";
-  // TODO: integrar envío real (email transaccional, base de datos o webhook).
-  // Placeholder preparado para Server Action: la firma ya es la definitiva.
-  void formData;
-}
 
 export default function ContactoPage() {
   return (
@@ -33,8 +27,6 @@ export default function ContactoPage() {
         }
       />
 
-      {/* Sección 1: Formulario */}
-      
 
       {/* Sección 2: Canales directos */}
       <section aria-labelledby="canales" className="flex flex-col gap-[2.5rem]">

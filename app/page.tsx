@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import logoLCI from "@/components/logo_lci.svg";
 import { SectionTitle } from "@/components/SectionTitle";
 import { FaqSection } from "@/components/FaqSection";
-import { FAQS_SERVICIOS } from "@/lib/faq";
+import { FAQS_HOME } from "@/lib/faq";
 import { PRECIOS } from "@/lib/pricing";
 
 const SERVICIOS = [
@@ -111,12 +111,14 @@ Apto para ocio y negocio.
         </Link>
       </section>
 
-      {/* AEO — FAQPage */}
+      {/* AEO — subconjunto del FAQ. El schema FAQPage se emite solo en
+          /nuestro-taller, la URL canónica del bloque. */}
       <section className="w-full px-[2rem] md:px-[5%] py-[clamp(3rem,8dvh,6rem)] border-t-2 border-black">
         <FaqSection
-          faqs={FAQS_SERVICIOS}
+          faqs={FAQS_HOME}
           withSchema={false}
-          intro="Las dudas que nos llegan con más frecuencia sobre plazos, precios y tecnologías."
+          verTodasHref="/nuestro-taller#faq"
+          intro="Lo que nos preguntan antes de dar el primer paso."
         />
       </section>
     </main>

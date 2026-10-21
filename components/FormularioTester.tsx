@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 import { CheckCircle2, Send, ShieldCheck } from "lucide-react";
 import {
   enviarPostulacionTester,
@@ -9,6 +10,15 @@ import {
 } from "@/app/actions/tester";
 
 const ESTADO_INICIAL: EstadoFormulario | null = null;
+
+/**
+ * Clave pública del widget. Si no hay `NEXT_PUBLIC_TURNSTILE_SITE_KEY` en el
+ * entorno caemos a la clave de prueba oficial de Cloudflare (siempre supera el
+ * reto), para que el formulario siga funcionando en local sin configuración.
+ * Es segura de exponer: es pública por diseño y no valida nada en servidor.
+ */
+const SITE_KEY =
+  process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "1x00000000000000000000AA";
 
 export const FormularioTester = () => {
   const [estado, formAction, pendiente] = useActionState(
@@ -96,32 +106,29 @@ export const FormularioTester = () => {
         />
       </div>
 
-      <div className="border-2 border-dashed border-black p-[1.25rem] flex flex-col gap-[0.75rem]">
+      {/*
+        Verificación humana con Cloudflare Turnstile. Sustituye al captcha
+        manual de escribir "INVENTO": aquel era texto fijo en el HTML, así que
+        un bot lo resolvía con una línea de código. Turnstile analiza señales
+        del navegador y emite un token firmado que el servidor valida contra
+        Cloudflare, sin pedirle nada al usuario en el caso normal.
+        El widget inyecta por sí mismo el input oculto `cf-turnstile-response`,
+        que el FormData arrastra hasta la Server Action.
+      */}
+      <div className="border-2 border-dashed border-black p-[1.25rem] flex flex-col gap-[1rem]">
         <div className="flex flex-wrap items-center gap-[0.5rem]">
           <ShieldCheck size="1rem" className="shrink-0" />
           <span className="text-[clamp(0.65rem,2.5vw,0.75rem)] uppercase font-bold tracking-wider md:tracking-[0.2em] leading-tight">
             Verificación humana
           </span>
         </div>
-        <label
-          htmlFor="verificacion"
-          className="text-sm leading-relaxed break-words"
-        >
-          Para evitar bots, escribe la palabra{" "}
-          <span className="font-black uppercase">INVENTO</span> en el siguiente
-          campo (no es sensible a mayúsculas):
-        </label>
-        <input
-          id="verificacion"
-          name="verificacion"
-          type="text"
-          required
-          pattern="[Ii][Nn][Vv][Ee][Nn][Tt][Oo]"
-          autoComplete="off"
-          inputMode="text"
-          disabled={pendiente}
-          className="border-2 border-black p-[0.75rem] text-base font-medium bg-white text-black focus:outline-none focus:bg-black focus:text-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-        />
+        {/* max-w-full evita que el iframe del widget desborde en móvil. */}
+        <div className="max-w-full overflow-x-hidden">
+          <Turnstile
+            siteKey={SITE_KEY}
+            options={{ theme: "light", size: "flexible", language: "es" }}
+          />
+        </div>
       </div>
 
       <div className="flex items-start gap-[0.75rem]">

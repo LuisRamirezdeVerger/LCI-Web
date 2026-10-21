@@ -72,8 +72,8 @@ export const PLANES: readonly Plan[] = [
     nivel: "Nivel 02 · El Motor",
     nombre: "MVP & Web Apps",
     descripcion:
-      "Aplicaciones web transaccionales a medida. Incluye bases de datos (Firebase), autenticación de usuarios, lógica de negocio compleja y arquitectura escalable.",
-    incluye: ["Next.js + TS", "Firebase", "Auth", "Server Actions"],
+      "Aplicaciones web transaccionales a medida. Incluye bases de datos (Supabase), autenticación de usuarios, lógica de negocio compleja y arquitectura escalable.",
+    incluye: ["Next.js + TS", "Supabase", "Auth", "Server Actions"],
     precio: PRECIOS.motor,
     destacado: true,
   },
@@ -83,7 +83,7 @@ export const PLANES: readonly Plan[] = [
     nombre: "Apps Nativas",
     descripcion:
       "Lleva tu idea directamente al bolsillo de tus usuarios. Desarrollo nativo de alto rendimiento, interfaces fluidas y experiencia premium.",
-    incluye: ["Android", "Kotlin", "Jetpack Compose", "Firebase"],
+    incluye: ["Android", "Kotlin", "Jetpack Compose", "Supabase"],
     precio: PRECIOS.bolsillo,
     destacado: false,
   },
