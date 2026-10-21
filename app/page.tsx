@@ -42,7 +42,7 @@ export default function Home() {
           alt=""
           aria-hidden="true"
           priority
-          className="w-[20rem] md:w-[28rem] mt-[clamp(0.25rem,1dvh,0.5rem)] h-auto max-w-full animate-invento-flotando"
+          className="w-[20rem] md:w-[28rem] mt-[clamp(0.25rem,1dvh,0.5rem)] h-auto max-w-full animate-invento-flotando motion-reduce:animate-none"
         />
 
         <p className="mt-[clamp(0.25rem,1dvh,0.75rem)] text-[1.25rem] md:text-[1.75rem] text-gray-800 font-medium max-w-[40rem] mx-auto leading-relaxed">
@@ -53,13 +53,13 @@ Apto para ocio y negocio.
         <div className="mt-[0.2rem] flex flex-wrap justify-center gap-[1.5rem]">
           <Link
             href="/proyectos"
-            className="inline-block px-[2rem] py-[1rem] bg-black text-white rounded-full font-bold hover:bg-gray-800 hover:scale-110 active:bg-gray-800 active:scale-[0.98] transition-all duration-300"
+            className="inline-block px-[2rem] py-[1rem] bg-black text-white rounded-full font-bold hover:bg-gray-800 hover:scale-[1.02] active:bg-gray-800 active:scale-[0.98] transition-[background-color,transform] duration-200 ease-fisica"
           >
             Ver Proyectos
           </Link>
           <Link
             href="/sobre-nosotros"
-            className="inline-block px-[2rem] py-[1rem] border-2 border-black text-black rounded-full font-bold hover:bg-black hover:text-white active:bg-black active:text-white active:scale-[0.98] transition-all duration-300"
+            className="inline-block px-[2rem] py-[1rem] border-2 border-black text-black rounded-full font-bold hover:bg-black hover:text-white active:bg-black active:text-white active:scale-[0.98] transition-[background-color,color,transform] duration-200 ease-salida"
           >
             Sobre Nosotros
           </Link>
@@ -104,7 +104,7 @@ Apto para ocio y negocio.
 
         <Link
           href="/nuestro-taller"
-          className="inline-flex items-center gap-[0.5rem] self-start border-2 border-black rounded-full px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(0.75rem,1.5vw,1.1rem)] font-black uppercase tracking-wider md:tracking-[0.1em] text-[clamp(0.7rem,1.8vw,0.85rem)] leading-tight hover:bg-black hover:text-white active:scale-[0.98] transition-all duration-300"
+          className="inline-flex items-center gap-[0.5rem] self-start border-2 border-black rounded-full px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(0.75rem,1.5vw,1.1rem)] font-black uppercase tracking-wider md:tracking-[0.1em] text-[clamp(0.7rem,1.8vw,0.85rem)] leading-tight hover:bg-black hover:text-white active:scale-[0.98] transition-[background-color,color,transform] duration-200 ease-salida"
         >
           Ver servicios y precios
           <ArrowUpRight size="1rem" className="shrink-0" />

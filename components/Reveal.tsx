@@ -14,7 +14,7 @@ interface RevealProps {
  * Envoltorio que aplica fade-in + slide-up cuando el elemento entra en el viewport.
  * Una sola activación: tras la primera intersección, desconecta el observer.
  * Mientras está oculto: opacity-0 + translateY de 1.5rem.
- * Al entrar: transición de 700ms ease-out hasta visible.
+ * Al entrar: transición de 500ms con curva decelerada hasta visible.
  */
 export const Reveal = ({ children, delay = 0, className = "" }: RevealProps) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -45,7 +45,7 @@ export const Reveal = ({ children, delay = 0, className = "" }: RevealProps) => 
     <div
       ref={ref}
       style={{ transitionDelay: `${delay}ms` }}
-      className={`transition-all duration-700 ease-out ${
+      className={`transition-[opacity,transform] duration-500 ease-salida ${
         visible
           ? "opacity-100 translate-y-0"
           : "opacity-0 translate-y-[1.5rem]"

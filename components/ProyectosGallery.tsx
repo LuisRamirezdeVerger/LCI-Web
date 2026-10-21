@@ -10,15 +10,12 @@ interface CardProps {
   project: Project;
   isActive: boolean;
   cardRef: (el: HTMLElement | null) => void;
-  /** Escala reducida para grids anidados en contenedores con overflow-hidden. */
-  compactScale?: boolean;
 }
 
 const ProjectCard = ({
   project,
   isActive,
   cardRef,
-  compactScale = false,
 }: CardProps) => (
   <Link
     href={`/proyectos/${project.id}`}
@@ -30,19 +27,15 @@ const ProjectCard = ({
       ref={cardRef}
       data-id={project.id}
       data-active={isActive}
-      className={`group/card relative h-full cursor-pointer border-2 border-black rounded-[clamp(0.5rem,1vw,1.5rem)] p-[clamp(1.5rem,3vw,3rem)] bg-white text-black group-hover/grid:scale-[0.85] group-data-[has-active=true]/grid:scale-[0.85] hover:bg-black hover:text-white hover:z-10 data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:z-10 ${
-        compactScale
-          ? "hover:!scale-[1.04] data-[active=true]:!scale-[1.04]"
-          : "hover:!scale-[1.08] data-[active=true]:!scale-[1.08]"
-      } hover:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] data-[active=true]:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] active:scale-[0.98] will-change-transform transition-all duration-500 ease-out overflow-hidden`}
+      className={`group/card relative h-full cursor-pointer border-2 border-black rounded-[clamp(0.5rem,1vw,1.5rem)] p-[clamp(1.5rem,3vw,3rem)] bg-white text-black hover:!scale-[1.04] data-[active=true]:!scale-[1.04] group-hover/grid:scale-[0.94] group-data-[has-active=true]/grid:scale-[0.94] hover:bg-black hover:text-white hover:z-10 data-[active=true]:bg-black data-[active=true]:text-white data-[active=true]:z-10 hover:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] data-[active=true]:shadow-[0_clamp(1rem,2vw,2rem)_clamp(2rem,4vw,4rem)_rgba(0,0,0,0.25)] active:scale-[0.98] motion-reduce:!scale-100 hover:will-change-transform transition-[transform,box-shadow] duration-300 ease-salida overflow-hidden`}
     >
       {project.gradient && (
         <div
           aria-hidden="true"
-          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover/card:opacity-100 group-data-[active=true]/card:opacity-100 transition-opacity duration-500 pointer-events-none`}
+          className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover/card:opacity-100 group-data-[active=true]/card:opacity-100 transition-opacity duration-300 ease-salida pointer-events-none`}
         />
       )}
-      <div className="relative z-10 flex flex-col justify-between gap-[1.5rem] h-full group-hover/card:text-white group-data-[active=true]/card:text-white transition-colors duration-500">
+      <div className="relative z-10 flex flex-col justify-between gap-[1.5rem] h-full group-hover/card:text-white group-data-[active=true]/card:text-white transition-colors duration-300 ease-salida">
         <span className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-bold tracking-wider md:tracking-widest leading-tight opacity-70">
           {project.discipline}
         </span>
@@ -69,20 +62,18 @@ interface GridProps {
   projects: Project[];
   activeId: string | null;
   registerRef: (id: string) => (el: HTMLElement | null) => void;
-  compactScale?: boolean;
 }
 
 const ProjectsGrid = ({
   projects,
   activeId,
   registerRef,
-  compactScale = false,
 }: GridProps) => {
   const hasActive = activeId != null && projects.some((p) => p.id === activeId);
   return (
     <div
       data-has-active={hasActive}
-      className="group/grid grid grid-cols-1 md:grid-cols-3 md:auto-rows-[16rem] gap-[clamp(1rem,2vw,2rem)]"
+      className="group/grid grid grid-cols-1 md:grid-cols-3 md:auto-rows-[clamp(12rem,22vw,16rem)] gap-[clamp(1rem,2vw,2rem)]"
     >
       {projects.map((p) => (
         <ProjectCard
@@ -90,7 +81,6 @@ const ProjectsGrid = ({
           project={p}
           isActive={activeId === p.id}
           cardRef={registerRef(p.id)}
-          compactScale={compactScale}
         />
       ))}
     </div>
@@ -171,12 +161,12 @@ export const ProyectosGallery = () => {
           onClick={() => setIsOpen((v) => !v)}
           aria-expanded={isOpen}
           aria-controls="labs-panel"
-          className="group/toggle inline-flex items-center gap-[0.75rem] border-2 border-black rounded-full px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(0.75rem,1.5vw,1.25rem)] bg-white text-black font-black uppercase tracking-wider md:tracking-[0.15em] text-[clamp(0.7rem,1.8vw,0.9rem)] leading-tight hover:bg-black hover:text-white hover:scale-[1.03] active:scale-[0.98] transition-all duration-300 ease-out"
+          className="group/toggle inline-flex items-center gap-[0.75rem] border-2 border-black rounded-full px-[clamp(1.5rem,3vw,2.5rem)] py-[clamp(0.75rem,1.5vw,1.25rem)] bg-white text-black font-black uppercase tracking-wider md:tracking-[0.15em] text-[clamp(0.7rem,1.8vw,0.9rem)] leading-tight hover:bg-black hover:text-white hover:scale-[1.03] active:scale-[0.98] motion-reduce:!scale-100 transition-[background-color,color,transform] duration-200 ease-salida"
         >
           {isOpen ? "Ocultar Laboratorio" : "Desbloquear Laboratorio"}
           <ChevronDown
             size="1.1rem"
-            className={`shrink-0 transition-transform duration-500 ease-out ${
+            className={`shrink-0 transition-transform duration-[250ms] ease-salida ${
               isOpen ? "rotate-180" : "rotate-0"
             }`}
           />
@@ -184,7 +174,7 @@ export const ProyectosGallery = () => {
 
         <div
           id="labs-panel"
-          className={`grid w-full transition-all duration-500 ease-in-out ${
+          className={`grid w-full transition-[grid-template-rows,opacity,margin-top] duration-[400ms] ease-salida ${
             isOpen
               ? "grid-rows-[1fr] opacity-100 mt-[clamp(2rem,4vw,4rem)]"
               : "grid-rows-[0fr] opacity-0 mt-0"
@@ -205,7 +195,6 @@ export const ProyectosGallery = () => {
                   projects={internalProjects}
                   activeId={activeCard}
                   registerRef={registerRef}
-                  compactScale
                 />
               </div>
             </div>
