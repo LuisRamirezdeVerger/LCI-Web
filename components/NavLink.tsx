@@ -40,7 +40,7 @@ export const NavLink = ({
     <li className="relative group transition-colors">
       <Link
         href={href}
-        className={`${activo ? "text-black" : "text-gray-400 hover:text-black"} transition-colors`}
+        className={`${activo ? "text-black" : "text-gray-600 hover:text-black"} transition-colors`}
       >
         {children}
       </Link>

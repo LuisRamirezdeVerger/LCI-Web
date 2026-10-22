@@ -108,6 +108,8 @@ const proyectoLd = (project: Project) => ({
     operatingSystem: "Android",
   }),
   ...(project.caseStudy?.tags && { keywords: project.caseStudy.tags.join(", ") }),
+  ...(project.datePublished && { datePublished: project.datePublished }),
+  ...(project.dateModified && { dateModified: project.dateModified }),
   creator: { "@id": `${SITE_URL}/#organization` },
   publisher: { "@id": `${SITE_URL}/#organization` },
 });

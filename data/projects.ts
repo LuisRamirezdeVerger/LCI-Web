@@ -77,12 +77,18 @@ export interface Project {
   gradient?: string;
   /** URL pública del proyecto en producción, si está publicado. */
   externalLink?: string;
+  /** Fecha ISO de publicación de la ficha (señal de frescura para answer engines). */
+  datePublished?: string;
+  /** Fecha ISO de la última revisión del caso de estudio. */
+  dateModified?: string;
   caseStudy?: CaseStudy;
 }
 
 export const PROJECTS: Project[] = [
   {
     id: "miau",
+    datePublished: "2026-10-21",
+    dateModified: "2026-10-21",
     title: "Miau!",
     discipline: "App Móvil",
     category: "internal",
@@ -138,6 +144,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "miau-gold",
+    datePublished: "2026-10-21",
+    dateModified: "2026-10-21",
     title: "Miau! GOLD",
     discipline: "App Móvil",
     category: "internal",
@@ -193,6 +201,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "music-link",
+    datePublished: "2026-10-21",
+    dateModified: "2026-10-21",
     title: "Music Link",
     discipline: "App Móvil",
     category: "internal",
@@ -347,6 +357,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "ticketurn",
+    datePublished: "2026-10-21",
+    dateModified: "2026-10-21",
     title: "TickeTurn",
     discipline: "Sistemas de Gestión",
     category: "client",
@@ -471,6 +483,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "saas-clinicas",
+    datePublished: "2026-10-21",
+    dateModified: "2026-10-21",
     title: "SaaS para clínicas",
     discipline: "Sistemas de Gestión",
     category: "client",
@@ -554,6 +568,8 @@ export const PROJECTS: Project[] = [
   },
   {
     id: "podologia-balboa",
+    datePublished: "2026-10-21",
+    dateModified: "2026-10-21",
     title: "Podología Balboa",
     discipline: "Web",
     category: "client",

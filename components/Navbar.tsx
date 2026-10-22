@@ -77,6 +77,7 @@ export const Navbar = () => {
         {/* Vista compacta — overlay absoluto (solo móvil) */}
         <div
           aria-hidden={!showCompact}
+          inert={!showCompact}
           className={`md:hidden absolute inset-0 flex items-center justify-center will-change-transform transition-[opacity,transform] duration-300 ease-in-out ${
             showCompact
               ? "opacity-100 translate-y-0"
@@ -85,6 +86,7 @@ export const Navbar = () => {
         >
           <Link
             href="/"
+            tabIndex={showCompact ? 0 : -1}
             className="text-[1rem] font-black tracking-tighter text-black uppercase active:opacity-60 transition-opacity duration-300"
           >
             LA CASA DE LOS INVENTOS

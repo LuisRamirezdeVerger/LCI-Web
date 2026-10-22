@@ -2,10 +2,14 @@ import type { MetadataRoute } from "next";
 import { PROJECTS } from "@/data/projects";
 import { SITE_URL } from "@/lib/seo";
 
+/** Fecha por defecto cuando una entrada no declara la suya. */
+const LAST_MODIFIED_POR_DEFECTO = "2026-10-21";
+
 type Entry = {
   path: string;
   priority: number;
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
+  lastModified?: string;
 };
 
 const ESTATICAS: Entry[] = [
@@ -21,20 +25,19 @@ const ESTATICAS: Entry[] = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-
   // Las fichas de proyecto se derivan de PROJECTS: añadir un proyecto
   // lo publica en el sitemap automáticamente.
-  const proyectos: Entry[] = PROJECTS.map(({ id, featured }) => ({
+  const proyectos: Entry[] = PROJECTS.map(({ id, featured, dateModified }) => ({
     path: `/proyectos/${id}`,
     priority: featured ? 0.8 : 0.6,
     changeFrequency: "monthly",
+    lastModified: dateModified,
   }));
 
   return [...ESTATICAS, ...proyectos].map(
-    ({ path, priority, changeFrequency }) => ({
+    ({ path, priority, changeFrequency, lastModified }) => ({
       url: `${SITE_URL}${path}`,
-      lastModified,
+      lastModified: lastModified ?? LAST_MODIFIED_POR_DEFECTO,
       changeFrequency,
       priority,
     }),

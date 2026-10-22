@@ -27,7 +27,7 @@ export const Footer = () => {
 
         {/* Contacto */}
         <div className="flex flex-col items-center sm:items-start gap-[1.2rem]">
-          <h3 className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-black tracking-wider md:tracking-[0.2em] leading-tight text-gray-500">Contacto</h3>
+          <h3 className="text-[clamp(0.6rem,2.2vw,0.7rem)] uppercase font-black tracking-wider md:tracking-[0.2em] leading-tight text-gray-400">Contacto</h3>
           
           <a href="mailto:lacasadelosinventos@gmail.com" className="flex items-center gap-[0.8rem] hover:text-gray-400 active:text-gray-400 transition-colors duration-300 group break-all">
             <Mail size="1.125rem" className="shrink-0 group-hover:scale-110 transition-transform" />
@@ -44,7 +44,7 @@ export const Footer = () => {
       </div>
 
       {/* Legal + Copyright */}
-      <div className="mt-[1.5rem] pt-[1rem] border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[1rem] text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold text-gray-500 uppercase tracking-wider md:tracking-widest leading-tight">
+      <div className="mt-[1.5rem] pt-[1rem] border-t border-white/10 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-[1rem] text-[clamp(0.6rem,2.2vw,0.7rem)] font-bold text-gray-400 uppercase tracking-wider md:tracking-widest leading-tight">
         <ul className="flex flex-wrap justify-center sm:justify-start gap-x-[1.25rem] gap-y-[0.5rem]">
           {ENLACES_LEGALES.map(({ href, etiqueta }) => (
             <li key={href}>

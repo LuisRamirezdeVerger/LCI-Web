@@ -1,0 +1,252 @@
+/*
+ * Contenedor del generador. Cero píxeles: rem, %, vw y fracciones de rejilla.
+ * Mobile-first: una columna, y a partir de 60rem las dos columnas reales.
+ */
+
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: 100%;
+  max-width: 85rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  box-sizing: border-box;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@media (min-width: 60rem) {
+  .layout {
+    /* La previsualización pesa más que los controles. */
+    grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+    align-items: start;
+  }
+}
+
+/* ---------- Controles ---------- */
+
+.controles {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+@media (min-width: 60rem) {
+  .controles {
+    position: sticky;
+    /* svh, no vh: en móvil la barra de URL no descuadra el pegado. */
+    top: 1.5rem;
+    max-height: calc(100svh - 3rem);
+    overflow-y: auto;
+  }
+}
+
+.seccion {
+  margin: 0.5rem 0 0;
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  line-height: 1.2;
+}
+
+.rejilla2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+@media (min-width: 30rem) {
+  .rejilla2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.campo > span {
+  font-size: clamp(0.65rem, 1.6vw, 0.72rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+
+.campo input {
+  box-sizing: border-box;
+  width: 100%;
+  /* min-height ≥ 2.75rem: objetivo táctil cómodo (WCAG 2.2). */
+  min-height: 2.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 0.125rem solid #000000;
+  border-radius: 0;
+  background: #ffffff;
+  color: #000000;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.campo input:focus-visible {
+  outline: 0.125rem solid #000000;
+  outline-offset: 0.125rem;
+}
+
+/* ---------- Líneas dinámicas ---------- */
+
+.lineas {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.linea {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: clamp(0.75rem, 2vw, 1rem);
+  border: 0.125rem dashed #000000;
+}
+
+/* ---------- Acciones ---------- */
+
+.acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.botonPrimario,
+.botonSecundario {
+  flex: 1 1 10rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border: 0.125rem solid #000000;
+  border-radius: 2rem;
+  font: inherit;
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.botonPrimario {
+  background: #000000;
+  color: #ffffff;
+}
+
+.botonSecundario {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Ambos botones invierten sus colores al pasar por encima. */
+.botonPrimario:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.botonSecundario:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+.botonPrimario:active,
+.botonSecundario:active {
+  transform: scale(0.98);
+}
+
+.botonPrimario:focus-visible,
+.botonSecundario:focus-visible {
+  outline: 0.125rem solid currentColor;
+  outline-offset: 0.125rem;
+}
+
+.botonSecundario:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.botonSecundario:disabled:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .botonPrimario,
+  .botonSecundario {
+    transition-duration: 0.01ms;
+  }
+
+  .botonPrimario:active,
+  .botonSecundario:active {
+    transform: none;
+  }
+}
+
+/* ---------- Previsualización ---------- */
+
+.previsualizacion {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 0;
+}
+
+.hoja {
+  /* El borde y la sombra son chrome de pantalla: @media print los retira. */
+  box-shadow: 0 0.25rem 1.5rem rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- Impresión ---------- */
+
+@media print {
+  /*
+   * Solo sale la factura. Los controles y los títulos de pantalla se retiran
+   * del flujo, y el layout deja de ser rejilla para que la hoja ocupe el
+   * ancho completo del papel sin arrastrar una columna vacía.
+   */
+  .controles,
+  .soloPantalla {
+    display: none !important;
+  }
+
+  .layout {
+    display: block;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    gap: 0;
+  }
+
+  .previsualizacion {
+    display: block;
+    gap: 0;
+  }
+
+  .hoja {
+    box-shadow: none;
+  }
+
+  /* Formato A4 con márgenes en rem: ni un píxel. */
+  @page {
+    size: A4;
+    margin: 1.5rem;
+  }
+}

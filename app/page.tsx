@@ -42,6 +42,8 @@ export default function Home() {
           alt=""
           aria-hidden="true"
           priority
+          fetchPriority="high"
+          sizes="(min-width: 48rem) 28rem, 20rem"
           className="w-[20rem] md:w-[28rem] mt-[clamp(0.25rem,1dvh,0.5rem)] h-auto max-w-full animate-invento-flotando motion-reduce:animate-none"
         />
 
