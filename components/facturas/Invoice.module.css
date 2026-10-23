@@ -29,18 +29,32 @@
   border-bottom: 0.125rem solid #000000;
 }
 
+/*
+ * El logo y el nombre comparten eje vertical: align-items: center los centra
+ * entre sí, de modo que un logo más ancho que el texto (o al revés) no deja
+ * la columna descuadrada.
+ */
 .emisor {
-  flex: 1 1 18rem;
+  flex: 1 1 14rem;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
+/*
+ * Ancho fijo en rem y alto automático: la proporción del SVG manda, y
+ * max-width al 100 % impide que desborde la columna en anchuras estrechas.
+ */
 .logo {
   display: block;
-  width: auto;
-  max-width: 12rem;
+  width: 11rem;
+  max-width: 100%;
   height: auto;
-  max-height: 4rem;
-  margin-bottom: 0.75rem;
+  /* Márgenes negativos: el SVG trae aire propio en su viewBox, así que
+     recortamos ese espacio en lugar de añadir el nuestro encima. */
+  margin: -0.75rem 0 -0.25rem;
 }
 
 .emisorNombre {
@@ -63,8 +77,14 @@
   overflow-wrap: break-word;
 }
 
+/* Columna derecha: titular, metadatos y datos fiscales del emisor. */
 .meta {
-  flex: 0 1 14rem;
+  flex: 1 1 18rem;
+  text-align: right;
+}
+
+.meta .emisorDatos {
+  margin-top: 1rem;
   text-align: right;
 }
 

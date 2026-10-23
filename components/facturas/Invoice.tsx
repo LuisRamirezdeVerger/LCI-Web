@@ -1,3 +1,4 @@
+import logoLCI from "@/components/logo_lci.svg";
 import styles from "./Invoice.module.css";
 
 /** Una línea de la factura. `descuento` es un porcentaje sobre `precio`. */
@@ -27,7 +28,10 @@ export interface InvoiceProps {
   cliente: DatosCliente;
   lineas: LineaFactura[];
   totales: Totales;
-  /** Ruta del logotipo. Acepta .svg o .webp servidos desde /public. */
+  /**
+   * Logotipo. Por defecto el del estudio, importado como asset estático.
+   * Admite cualquier ruta (.svg o .webp) para sobrescribirlo.
+   */
   logoSrc?: string;
 }
 
@@ -39,11 +43,11 @@ export const EMISOR = {
   direccion: "Residencial Oriente, 30, local 25, 41007, Sevilla",
   telefono: "+34 689 00 21 55",
   email: "lacasadelosinventos@gmail.com",
-  web: "https://www.lacasadelosinventos.com/",
+  web: "https://www.lacasadelosinventos.com",
 } as const;
 
 export const CONDICIONES =
-  "Condiciones de pago: Transferencia bancaria a 30 días. IBAN: ESXX XXXX XXXX XXXX XXXX XXXX";
+  "Condiciones de pago: Transferencia bancaria a 30 días. IBAN: ES04 1200 8483 7521 0025 7545";
 
 export const IVA = 0.21;
 export const IRPF = 0.07;
@@ -75,28 +79,19 @@ export const Invoice = ({
   cliente,
   lineas,
   totales,
-  logoSrc = "/logo-factura.svg",
+  // El import estático resuelve a la URL con hash que sirve Next: así el
+  // logo no depende de que exista un archivo suelto en /public.
+  logoSrc = logoLCI.src,
 }: InvoiceProps) => (
   <article className={styles.factura}>
     <header className={styles.cabecera}>
       <div className={styles.emisor}>
         {/* alt vacío: el nombre del emisor va escrito justo debajo. */}
-        <img src={logoSrc} alt="" className={styles.logo} />
+        <img src={logoSrc} alt="" aria-hidden="true" className={styles.logo} />
         <p className={styles.emisorNombre}>
           {EMISOR.nombre}
           <span className={styles.emisorMarca}>{EMISOR.marca}</span>
         </p>
-        <address className={styles.emisorDatos}>
-          NIF: {EMISOR.nif}
-          <br />
-          {EMISOR.direccion}
-          <br />
-          {EMISOR.telefono}
-          <br />
-          {EMISOR.email}
-          <br />
-          {EMISOR.web}
-        </address>
       </div>
 
       <div className={styles.meta}>
@@ -109,6 +104,18 @@ export const Invoice = ({
             <time dateTime={fecha}>{fecha}</time>
           </dd>
         </dl>
+
+        <address className={styles.emisorDatos}>
+          NIF: {EMISOR.nif}
+          <br />
+          {EMISOR.direccion}
+          <br />
+          {EMISOR.telefono}
+          <br />
+          {EMISOR.email}
+          <br />
+          {EMISOR.web}
+        </address>
       </div>
     </header>
 
