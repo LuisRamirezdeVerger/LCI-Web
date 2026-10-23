@@ -11,6 +11,31 @@ import styles from "./InvoiceGenerator.module.css";
 
 const hoy = () => new Date().toISOString().slice(0, 10);
 
+/** Días hábiles de plazo que fijan las condiciones de pago (72 h laborables). */
+const DIAS_HABILES = 3;
+
+/**
+ * Suma días hábiles a una fecha ISO saltando sábados y domingos.
+ *
+ * El contador solo avanza cuando el día que resulta es laborable, así que un
+ * fin de semana desplaza el vencimiento sin consumir plazo. Se opera en UTC
+ * porque la cadena se parsea como UTC: con métodos locales, un navegador al
+ * oeste de Greenwich leería el día anterior.
+ */
+const sumarDiasHabiles = (fecha: string, dias = DIAS_HABILES): string => {
+  const d = new Date(`${fecha}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return "";
+
+  let restantes = dias;
+  while (restantes > 0) {
+    d.setUTCDate(d.getUTCDate() + 1);
+    const diaSemana = d.getUTCDay();
+    if (diaSemana !== 0 && diaSemana !== 6) restantes -= 1;
+  }
+
+  return d.toISOString().slice(0, 10);
+};
+
 /** Identificador estable por fila: React necesita una key que no sea el índice. */
 const nuevaLinea = (): LineaFactura => ({
   id: crypto.randomUUID(),
@@ -38,6 +63,7 @@ export const InvoiceGenerator = () => {
   const [lineas, setLineas] = useState<LineaFactura[]>(() => [nuevaLinea()]);
 
   const totales = useMemo(() => calcularTotales(lineas), [lineas]);
+  const fechaVencimiento = useMemo(() => sumarDiasHabiles(fecha), [fecha]);
 
   const editarLinea = <K extends keyof LineaFactura>(
     id: string,
@@ -214,6 +240,7 @@ export const InvoiceGenerator = () => {
             numero={numero}
             fecha={fecha}
             fechaOperacion={fechaOperacion || undefined}
+            fechaVencimiento={fechaVencimiento}
             cliente={cliente}
             lineas={lineas}
             totales={totales}

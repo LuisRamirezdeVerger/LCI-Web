@@ -28,6 +28,8 @@ export interface InvoiceProps {
   fecha: string;
   /** Fecha de operación (art. 6.1.f RD 1619/2012): solo si difiere de la emisión. */
   fechaOperacion?: string;
+  /** Vencimiento ya calculado por el generador: aquí solo se pinta. */
+  fechaVencimiento: string;
   cliente: DatosCliente;
   lineas: LineaFactura[];
   totales: Totales;
@@ -50,7 +52,7 @@ export const EMISOR = {
 } as const;
 
 export const CONDICIONES =
-  "Condiciones de pago: Transferencia bancaria a 30 días. IBAN: ES04 1200 8483 7521 0025 7545";
+  "Condiciones de pago: Transferencia bancaria en un plazo máximo de 72h laborables. IBAN: ES04 1200 8483 7521 0025 7545";
 
 export const IVA = 0.21;
 export const IRPF = 0.07;
@@ -63,20 +65,6 @@ const eur = new Intl.NumberFormat("es-ES", {
 /** Importe de una línea: cantidad × precio, menos su descuento porcentual. */
 export const totalLinea = ({ cantidad, precio, descuento }: LineaFactura): number =>
   cantidad * precio * (1 - descuento / 100);
-
-/** Plazo de pago en días que fijan las condiciones del pie. */
-export const DIAS_VENCIMIENTO = 30;
-
-/**
- * Vencimiento = emisión + 30 días. Se opera en UTC a propósito: construir la
- * fecha en hora local desplaza el día según la zona horaria del navegador.
- */
-export const calcularVencimiento = (fecha: string): string => {
-  const d = new Date(`${fecha}T00:00:00Z`);
-  if (Number.isNaN(d.getTime())) return "";
-  d.setUTCDate(d.getUTCDate() + DIAS_VENCIMIENTO);
-  return d.toISOString().slice(0, 10);
-};
 
 export const calcularTotales = (lineas: LineaFactura[]): Totales => {
   const subtotal = lineas.reduce((acc, l) => acc + totalLinea(l), 0);
@@ -94,16 +82,14 @@ export const Invoice = ({
   numero,
   fecha,
   fechaOperacion,
+  fechaVencimiento,
   cliente,
   lineas,
   totales,
   // El import estático resuelve a la URL con hash que sirve Next: así el
   // logo no depende de que exista un archivo suelto en /public.
   logoSrc = logoLCI.src,
-}: InvoiceProps) => {
-  const vencimiento = calcularVencimiento(fecha);
-
-  return (
+}: InvoiceProps) => (
   <article className={styles.factura}>
     <header className={styles.cabecera}>
       <div className={styles.emisor}>
@@ -134,7 +120,7 @@ export const Invoice = ({
           )}
           <dt>Vencimiento</dt>
           <dd>
-            <time dateTime={vencimiento}>{vencimiento || "—"}</time>
+            <time dateTime={fechaVencimiento}>{fechaVencimiento || "—"}</time>
           </dd>
         </dl>
 
@@ -216,6 +202,5 @@ export const Invoice = ({
     <footer className={styles.pie}>
       <p>{CONDICIONES}</p>
     </footer>
-    </article>
-  );
-};
+  </article>
+);
