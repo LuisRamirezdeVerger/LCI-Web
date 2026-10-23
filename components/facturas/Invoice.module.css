@@ -138,8 +138,14 @@
 
 /* ---------- Tabla de conceptos ---------- */
 
+/*
+ * table-layout: fixed reparte el ancho según estas columnas en lugar de
+ * según el contenido: con cinco columnas, un concepto largo dejaba de
+ * comprimir las numéricas hasta partirles los importes.
+ */
 .tabla {
   width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
   margin-bottom: clamp(1rem, 2.5vw, 1.5rem);
 }
@@ -162,6 +168,18 @@
   font-size: 0.85em;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.colConcepto {
+  width: 40%;
+}
+
+.colCantidad {
+  width: 12%;
+}
+
+.colImporte {
+  width: 16%;
 }
 
 /* Columnas numéricas: tabular-nums alinea los dígitos en vertical. */

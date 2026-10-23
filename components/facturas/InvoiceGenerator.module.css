@@ -52,7 +52,8 @@
   line-height: 1.2;
 }
 
-.rejilla2 {
+.rejilla2,
+.rejilla3 {
   display: grid;
   grid-template-columns: 1fr;
   gap: 0.75rem;
@@ -61,6 +62,11 @@
 @media (min-width: 30rem) {
   .rejilla2 {
     grid-template-columns: 1fr 1fr;
+  }
+
+  /* Cantidad ocupa menos: es un entero corto frente a dos importes. */
+  .rejilla3 {
+    grid-template-columns: 0.6fr 1fr 1fr;
   }
 }
 

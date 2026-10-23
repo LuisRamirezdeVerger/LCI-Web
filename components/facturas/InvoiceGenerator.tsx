@@ -15,6 +15,7 @@ const hoy = () => new Date().toISOString().slice(0, 10);
 const nuevaLinea = (): LineaFactura => ({
   id: crypto.randomUUID(),
   concepto: "",
+  cantidad: 1,
   precio: 0,
   descuento: 0,
 });
@@ -27,6 +28,8 @@ const nuevaLinea = (): LineaFactura => ({
 export const InvoiceGenerator = () => {
   const [numero, setNumero] = useState("2026-001");
   const [fecha, setFecha] = useState(hoy);
+  // Opcional: solo se imprime si la operación no coincide con la emisión.
+  const [fechaOperacion, setFechaOperacion] = useState("");
   const [cliente, setCliente] = useState<DatosCliente>({
     nombre: "",
     nif: "",
@@ -71,6 +74,14 @@ export const InvoiceGenerator = () => {
             />
           </label>
         </div>
+        <label className={styles.campo}>
+          <span>Fecha de operación (opcional)</span>
+          <input
+            type="date"
+            value={fechaOperacion}
+            onChange={(e) => setFechaOperacion(e.target.value)}
+          />
+        </label>
 
         <h2 className={styles.seccion}>Cliente</h2>
         <label className={styles.campo}>
@@ -120,7 +131,20 @@ export const InvoiceGenerator = () => {
                   }
                 />
               </label>
-              <div className={styles.rejilla2}>
+              <div className={styles.rejilla3}>
+                <label className={styles.campo}>
+                  <span>Cantidad</span>
+                  <input
+                    type="number"
+                    min="0"
+                    step="1"
+                    inputMode="numeric"
+                    value={linea.cantidad}
+                    onChange={(e) =>
+                      editarLinea(linea.id, "cantidad", Number(e.target.value))
+                    }
+                  />
+                </label>
                 <label className={styles.campo}>
                   <span>Precio (€)</span>
                   <input
@@ -189,6 +213,7 @@ export const InvoiceGenerator = () => {
           <Invoice
             numero={numero}
             fecha={fecha}
+            fechaOperacion={fechaOperacion || undefined}
             cliente={cliente}
             lineas={lineas}
             totales={totales}
