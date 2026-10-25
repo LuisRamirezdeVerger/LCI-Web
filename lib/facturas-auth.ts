@@ -27,7 +27,7 @@ const ES_PRODUCCION = process.env.NODE_ENV === "production";
  * para siempre, aunque se borrara después.
  */
 const USUARIO_DEV = "admin";
-const CLAVE_DEV = "LdsfdsCfdaIhfjy2fa0iopp2sdxf6rtugfg!";
+const CLAVE_DEV = "LCI2026!";
 const SECRETO_DEV = "secreto-solo-para-desarrollo-local";
 
 export function credenciales(): { usuario: string; clave: string } | null {
