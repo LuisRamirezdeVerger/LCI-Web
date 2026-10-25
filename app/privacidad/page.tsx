@@ -50,7 +50,7 @@ export default function PrivacidadPage() {
         <SectionTitle id="finalidades">2. Finalidades del tratamiento</SectionTitle>
         <p className={LEGAL_BODY}>Tratamos tus datos personales para:</p>
         <ul className={`${LEGAL_BODY} list-disc pl-[1.5rem] flex flex-col gap-[0.5rem]`}>
-          <li>Responder a las consultas enviadas a través del formulario de contacto o del correo electrónico.</li>
+          <li>Responder a las consultas recibidas por correo electrónico o por teléfono.</li>
           <li>Gestionar las relaciones precontractuales y contractuales (elaboración de presupuestos, prestación de servicios).</li>
           <li>Cumplir con las obligaciones legales, contables y fiscales aplicables.</li>
         </ul>
@@ -59,7 +59,7 @@ export default function PrivacidadPage() {
       <section aria-labelledby="base-legal" className={LEGAL_SECTION}>
         <SectionTitle id="base-legal">3. Base legal</SectionTitle>
         <ul className={`${LEGAL_BODY} list-disc pl-[1.5rem] flex flex-col gap-[0.5rem]`}>
-          <li><strong>Consentimiento del interesado</strong> (art. 6.1.a RGPD), otorgado al marcar la casilla de aceptación en el formulario.</li>
+          <li><strong>Consentimiento del interesado</strong> (art. 6.1.a RGPD), otorgado al dirigirnos voluntariamente una comunicación.</li>
           <li><strong>Ejecución de un contrato o medidas precontractuales</strong> (art. 6.1.b RGPD) cuando la comunicación tiene por objeto la contratación de servicios.</li>
           <li><strong>Cumplimiento de una obligación legal</strong> (art. 6.1.c RGPD) para la conservación de datos de facturación.</li>
         </ul>
@@ -68,9 +68,11 @@ export default function PrivacidadPage() {
       <section aria-labelledby="datos" className={LEGAL_SECTION}>
         <SectionTitle id="datos">4. Categorías de datos</SectionTitle>
         <p className={LEGAL_BODY}>
-          Únicamente los datos que el usuario proporciona voluntariamente:
-          nombre, dirección de correo electrónico, empresa (opcional) y
-          contenido del mensaje. No se recogen categorías especiales de datos.
+          Únicamente los datos que el usuario incluye voluntariamente en su
+          comunicación: nombre, dirección de correo electrónico o número de
+          teléfono, empresa (opcional) y contenido del mensaje. Este sitio web
+          no dispone de formularios de recogida de datos. No se recogen
+          categorías especiales de datos.
         </p>
       </section>
 
@@ -83,19 +85,18 @@ export default function PrivacidadPage() {
         </p>
         <ul className={`${LEGAL_BODY} list-disc pl-[1.5rem] flex flex-col gap-[0.5rem]`}>
           <li><strong>Vercel Inc.</strong> — hosting y despliegue del sitio (EE.UU.).</li>
-          <li><strong>Resend Inc.</strong> — entrega de correo transaccional generado por los formularios (EE.UU.).</li>
         </ul>
       </section>
 
       <section aria-labelledby="transferencias" className={LEGAL_SECTION}>
         <SectionTitle id="transferencias">6. Transferencias internacionales</SectionTitle>
         <p className={LEGAL_BODY}>
-          Vercel y Resend prestan servicio desde EE.UU. Las transferencias
+          Vercel presta servicio desde EE.UU. Las transferencias
           internacionales se amparan en las{" "}
           <strong>Cláusulas Contractuales Tipo (SCC)</strong> aprobadas por la
           Comisión Europea mediante Decisión 2021/914, así como en las medidas
-          técnicas y organizativas complementarias adoptadas por los propios
-          proveedores.
+          técnicas y organizativas complementarias adoptadas por el propio
+          proveedor.
         </p>
       </section>
 
