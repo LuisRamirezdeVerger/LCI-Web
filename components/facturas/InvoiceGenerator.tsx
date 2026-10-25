@@ -7,6 +7,7 @@ import {
   type DatosCliente,
   type LineaFactura,
 } from "./Invoice";
+import { cerrarSesionFacturas } from "@/app/facturas/login/actions";
 import styles from "./InvoiceGenerator.module.css";
 
 const hoy = () => new Date().toISOString().slice(0, 10);
@@ -226,6 +227,14 @@ export const InvoiceGenerator = () => {
             onClick={() => window.print()}
           >
             Exportar / Imprimir
+          </button>
+          {/* La Server Action borra la cookie y devuelve al formulario de acceso. */}
+          <button
+            type="button"
+            className={styles.botonSecundario}
+            onClick={() => cerrarSesionFacturas()}
+          >
+            Salir
           </button>
         </div>
       </section>

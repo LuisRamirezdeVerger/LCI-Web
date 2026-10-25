@@ -1,0 +1,135 @@
+/* Pantalla de acceso al generador. Cero píxeles: rem, % y svh. */
+
+.pantalla {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 70svh;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  box-sizing: border-box;
+}
+
+.tarjeta {
+  width: 100%;
+  max-width: 24rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 0.125rem solid #000000;
+  background: #ffffff;
+  color: #000000;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.titulo {
+  margin: 0;
+  font-size: clamp(1.25rem, 4vw, 1.75rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.intro {
+  margin: 0;
+  font-size: clamp(0.8rem, 2vw, 0.9rem);
+  line-height: 1.5;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.campo > span {
+  font-size: clamp(0.65rem, 1.6vw, 0.72rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+
+.campo input {
+  box-sizing: border-box;
+  width: 100%;
+  /* ≥ 2.75rem: objetivo táctil cómodo (WCAG 2.2). */
+  min-height: 2.75rem;
+  padding: 0.6rem 0.75rem;
+  border: 0.125rem solid #000000;
+  border-radius: 0;
+  background: #ffffff;
+  color: #000000;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.campo input:focus-visible {
+  outline: 0.125rem solid #000000;
+  outline-offset: 0.125rem;
+}
+
+.error {
+  margin: 0;
+  padding: 0.75rem;
+  border: 0.125rem solid #000000;
+  font-size: clamp(0.75rem, 1.8vw, 0.85rem);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.boton {
+  min-height: 2.75rem;
+  padding: 0.75rem 1.25rem;
+  border: 0.125rem solid #000000;
+  border-radius: 2rem;
+  background: #000000;
+  color: #ffffff;
+  font: inherit;
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.boton:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.boton:active {
+  transform: scale(0.98);
+}
+
+.boton:focus-visible {
+  outline: 0.125rem solid currentColor;
+  outline-offset: 0.125rem;
+}
+
+.boton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.boton:disabled:hover {
+  background: #000000;
+  color: #ffffff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .boton {
+    transition-duration: 0.01ms;
+  }
+
+  .boton:active {
+    transform: none;
+  }
+}
