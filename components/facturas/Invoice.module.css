@@ -250,7 +250,9 @@
   .factura {
     max-width: none;
     margin: 0;
-    padding: 0;
+    /* @page tiene margen 0 para suprimir la cabecera del navegador, así que
+       el aire del papel lo aporta aquí el propio documento. */
+    padding: 1.5rem;
     border: 0;
     font-size: 0.72rem;
   }

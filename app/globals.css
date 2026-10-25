@@ -77,6 +77,24 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/*
+ * Impresión: fuera el chrome del sitio. Solo debe salir el contenido de la
+ * página, que en /facturas es la factura.
+ */
+@media print {
+  body > nav,
+  body > footer,
+  #scroll-sentinel {
+    display: none !important;
+  }
+
+  /* Sin márgenes de página el navegador deja de imprimir su cabecera con la
+     URL y la fecha. El aire interior lo pone cada documento. */
+  @page {
+    margin: 0;
+  }
+}
+
 /* Respeta la preferencia del sistema de reducir movimiento (WCAG 2.2 AA). */
 @media (prefers-reduced-motion: reduce) {
   *,

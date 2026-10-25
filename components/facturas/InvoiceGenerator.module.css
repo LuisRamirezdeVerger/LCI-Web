@@ -250,9 +250,8 @@
     box-shadow: none;
   }
 
-  /* Formato A4 con márgenes en rem: ni un píxel. */
+  /* El margen lo fija globals.css a 0; aquí solo el tamaño del papel. */
   @page {
     size: A4;
-    margin: 1.5rem;
   }
 }
