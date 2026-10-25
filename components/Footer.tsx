@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Mail, Linkedin, Github, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const ENLACES_LEGALES = [
   { href: "/aviso-legal", etiqueta: "Aviso Legal" },
@@ -34,9 +34,9 @@ export const Footer = () => {
             <span className="text-[0.9rem]">lacasadelosinventos@gmail.com</span>
           </a>
 
-          <a href="tel:+34680300273" className="flex items-center gap-[0.8rem] hover:text-gray-400 active:text-gray-400 transition-colors duration-300 group">
+          <a href="tel:+34689002155" className="flex items-center gap-[0.8rem] hover:text-gray-400 active:text-gray-400 transition-colors duration-300 group">
             <Phone size="1.125rem" className="shrink-0 group-hover:scale-110 transition-transform" />
-            <span className="text-[0.9rem]">+34 680 300 273</span>
+            <span className="text-[0.9rem]">+34 689 00 21 55</span>
           </a>
         </div>
 

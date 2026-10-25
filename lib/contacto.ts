@@ -1,5 +1,5 @@
 import type { LucideIcon } from "lucide-react";
-import { Github, Linkedin, Mail, Phone } from "lucide-react";
+import { Instagram, Mail, Phone } from "lucide-react";
 
 export interface Canal {
   icono: LucideIcon;
@@ -25,17 +25,10 @@ export const CANALES: Canal[] = [
     externo: false,
   },
   {
-    icono: Linkedin,
-    etiqueta: "LinkedIn",
-    valor: "linkedin.com/in/luis-rdv",
-    href: "https://linkedin.com/in/luis-rdv",
-    externo: true,
-  },
-  {
-    icono: Github,
-    etiqueta: "GitHub",
-    valor: "github.com/LuisRamirezdeVerger",
-    href: "https://github.com/LuisRamirezdeVerger",
+    icono: Instagram,
+    etiqueta: "Instagram",
+    valor: "@lacasadelosinventos",
+    href: "https://instagram.com/lacasadelosinventos",
     externo: true,
   },
 ];
