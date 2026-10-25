@@ -18,7 +18,6 @@ const ESTATICAS: Entry[] = [
   { path: "/proyectos", priority: 0.9, changeFrequency: "weekly" },
   { path: "/sobre-nosotros", priority: 0.7, changeFrequency: "monthly" },
   { path: "/contacto", priority: 0.7, changeFrequency: "monthly" },
-  { path: "/unirse-tester", priority: 0.5, changeFrequency: "monthly" },
   { path: "/aviso-legal", priority: 0.3, changeFrequency: "yearly" },
   { path: "/privacidad", priority: 0.3, changeFrequency: "yearly" },
   { path: "/cookies", priority: 0.3, changeFrequency: "yearly" },
