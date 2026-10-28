@@ -52,7 +52,7 @@ export const EMISOR = {
 } as const;
 
 export const CONDICIONES =
-  "Condiciones de pago: Transferencia bancaria en un plazo máximo de 72h laborables. IBAN: ES04 1200 8483 7521 0025 7545";
+  "Condiciones de pago: Transferencia bancaria en un plazo máximo de 72h laborables. IBAN: ES04 2100 8483 7521 0025 7545";
 
 export const IVA = 0.21;
 export const IRPF = 0.07;
